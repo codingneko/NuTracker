@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
         try {
             var responseData = await axios({
                 method: 'post',
-                url: `http://localhost:${req.app.locals.port}/api/fap/${req.params.user}`,
+                url: `/api/fap/${req.params.user}`,
                 data: {
                     sessionId: req.session.sessionToken
                 }
