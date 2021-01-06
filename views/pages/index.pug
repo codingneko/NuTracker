@@ -1,0 +1,19 @@
+include ./_mixins.pug
+
+head
+    +head-imports
+    title Fap counter
+    
+body
+    +nav
+    .main-container
+        .container
+            h1 Welcome to fap counter!
+            p.mb-5.
+                Fap counter is a tracker for your 🌰s. You tell us when you cum, we save it 
+                in our shitty database in case you want to see how many times you 🌰ed a certain
+                day. We have beautiful charts so it's easy to keep track of your 🌰s.
+            .h4 Here are some of our most bonkable users
+            .users
+                each user in users
+                    a(href="/user/"+user).user-title #{user} 

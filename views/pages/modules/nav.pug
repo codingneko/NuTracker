@@ -1,0 +1,34 @@
+mixin nav
+    nav
+        .container
+            .row
+                .col.left-nav 
+                    a(href="/") Fap Counter
+                .col.right-nav
+                    if loggedInUser
+                        span.nav-userinfo.d-none.d-sm-inline You're logged in as 
+                            a(href="/user/"+loggedInUser) #{loggedInUser}
+                    else
+                        span.nav-userinfo
+                            +button('login', '/login')
+                    +button('I came!', '', 'new-fap')
+                    #nut-options
+                        +button('Quick fap', '/user/' + loggedInUser + '/fap')
+                    script.
+                        $(document).ready(() => {
+                            $('#new-fap').on('click', e => {
+                                e.preventDefault();
+                                $('#nut-options').toggleClass('opened');
+                            });
+
+                            $('.main-container').on('click', e => {
+                                $('#nut-options').removeClass('opened');
+                            });
+                        });
+    #notification-container
+        if notifications
+            each notification in notifications
+                .toast(role="alert", aria-live="assertive" aria-atomic="true" data-delay="2000") 
+                    .toast-body #{notification}
+                script.
+                    $('.toast').toast('show');

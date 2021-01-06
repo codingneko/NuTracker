@@ -1,0 +1,14 @@
+//Import vendor styles
+@import './vendor/bootstrap/css/bootstrap.scss';
+
+//import settings
+@import './settings';
+
+//import modules
+@import './modules/chart';
+@import './modules/button';
+@import './modules/nav';
+@import './modules/notifications';
+
+//Import main style
+@import './style';

@@ -1,0 +1,23 @@
+include ./_mixins.pug
+
+head
+    +head-imports
+    title=user
+    
+body
+    +nav
+    .main-container
+        .container
+            h3 Login
+            form(action="/login/submit", method="post")
+                .mb-3
+                    label(for="username").form-label Username
+                    input(type="text", placeholder="Cody", name="username")#username.form-control
+                .mb-3
+                    label(for="username").form-label Password
+                    input(type="password", placeholder="Password", name="password")#password.form-control
+                .mb-3
+                    input(type="submit").button
+            .mt-3 Don't have an account? 
+                a(href="/register") Register
+                    

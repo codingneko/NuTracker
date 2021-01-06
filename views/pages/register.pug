@@ -1,0 +1,26 @@
+include ./_mixins.pug
+
+head
+    +head-imports
+    title Register
+    
+body
+    +nav
+    .main-container
+        .container
+            h3 Register
+
+            form(action="/register/submit", method="post")
+                .mb-3
+                    label(for="username").form-label Username
+                    input(type="text", placeholder="Cody", name="username")#username.form-control
+                .mb-3
+                    label(for="username").form-label Password
+                    input(type="password", placeholder="Password", name="password")#password.form-control
+                .mb-3.
+                    Please keep in mind we CAN NOT recover your password.
+                .mb-3
+                    input(type="submit").button
+                    
+            span Already have an account? 
+                a(href="/login").mb-6 Login

@@ -1,0 +1,16 @@
+a {
+    color: black;
+    text-decoration: none;
+    &:hover {
+        color: black;
+    }
+}
+
+body {
+    background: linear-gradient(45deg,$white 0%, $secondary-color);
+    background-size: cover;
+}
+
+.main-container {
+    padding-top: 4rem;
+}
