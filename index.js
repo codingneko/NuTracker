@@ -9,7 +9,6 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const loadashId = require('lodash-id');
 
-
 //Import Express
 const express = require('express');
 const app = express();
@@ -32,7 +31,7 @@ const user = require('./controllers/api/users/user');
 app.locals.crypto = require('crypto');
 
 //Define domain name
-const base_url = 'http://localhost';
+app.locals.base_url = 'http://localhost';
 
 //Create database
 const adapter = new FileSync('db.json');

@@ -9,7 +9,7 @@ module.exports =  async (req, res) => {
 
     var responseData = await axios({
         method: 'post',
-        url: '/api/register',
+        url: req.app.locals.base_url + '/api/register',
         data: requestData
     });
 

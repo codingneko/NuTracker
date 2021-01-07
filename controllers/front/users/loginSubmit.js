@@ -9,11 +9,15 @@ module.exports =  async (req, res) => {
 
     var responseData = await axios({
         method: 'post',
-        url: '/api/login',
+        url: req.app.locals.base_url + '/api/login',
         data: requestData
     }).catch(err => {
         if(err.response.status == 401){
-            res.send('Wrong username or password, go back and try again');
+            helpers.addNotification(req, 'Wrong username or password');
+            res.redirect('/login');
+        } else {
+            helpers.addNotification(req, 'Something went wrong, server returned' + err.response.status);
+            res.redirect('/login');
         }
     });
 
