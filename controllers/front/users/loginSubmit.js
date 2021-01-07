@@ -16,7 +16,7 @@ module.exports =  async (req, res) => {
             helpers.addNotification(req, 'Wrong username or password');
             res.redirect('/login');
         } else {
-            helpers.addNotification(req, 'Something went wrong, server returned' + err.response.status);
+            helpers.addNotification(req, 'Something went wrong, server returned ' + err.response.status);
             res.redirect('/login');
         }
     });

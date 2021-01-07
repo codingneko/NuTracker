@@ -11,7 +11,10 @@ module.exports =  async (req, res) => {
         method: 'post',
         url: req.app.locals.base_url + '/api/register',
         data: requestData
-    });
+    }).catch(err => {
+        helpers.addNotification(req, 'Something went wrong, server returned ' + err.response.status);
+        res.redirect('/login');
+    });;
 
     if (responseData.data.status === 'Success') {
         helpers.addNotification(req, 'You have successfuly registered as ' + responseData.data.newUser + '. Go log in!')
