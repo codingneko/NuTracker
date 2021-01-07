@@ -1,4 +1,4 @@
-const helpers = require('../../../helpers')
+const helpers = require('../../../helpers');
 
 module.exports =  (req, res) => {
     if (typeof req.session.sessionToken === 'undefined') {
