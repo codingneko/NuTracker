@@ -121,5 +121,5 @@ process.on('SIGINT', () => {
 
 //Start the web server
 app.listen(app.locals.port, () => {
-    console.log(`Fap counter listening at http://localhost:${app.locals.port}`)
+    console.log(`NuTracker listening at http://localhost:${app.locals.port}`)
 });
