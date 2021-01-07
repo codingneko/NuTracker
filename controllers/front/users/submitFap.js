@@ -7,10 +7,12 @@ module.exports = async (req, res) => {
         try {
             var responseData = await axios({
                 method: 'post',
-                url: `/api/fap/${req.params.user}`,
+                url: req.app.locals.base_url + `/api/fap/${req.params.user}`,
                 data: {
                     sessionId: req.session.sessionToken
                 }
+            }).catch (err => {
+                helpers.addNotification(req, 'Something went wrong, server returned' + err.response.status);
             });
 
             if(responseData.data.status === 'Success') {
