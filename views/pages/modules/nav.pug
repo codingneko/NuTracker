@@ -10,7 +10,8 @@ mixin nav
                             a(href="/user/"+loggedInUser) #{loggedInUser}
                     else
                         span.nav-userinfo
-                            +button('login', '/login')
+                            a(href="/login").button.d-none.d-lg-inline Login
+                            a(href="/login").d-lg-none Login
                     +button('I came!', '', 'new-fap')
                     #nut-options
                         +button('Quick fap', '/user/' + loggedInUser + '/fap')

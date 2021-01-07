@@ -11,6 +11,10 @@ nav {
     .right-nav {
         position: relative;
         text-align: right;
+
+        @include media-breakpoint-down(sm) {
+            padding-top: 0.2rem;
+        }
     }
 
     #nut-options {
