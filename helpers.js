@@ -1,11 +1,17 @@
 var helpers = {
     getLoggedInUser: req => {
         if (typeof req.session.sessionToken !== 'undefined') {
-            return req.app.locals.db.get('users').find({
-                id: req.app.locals.db.get('sessions').find({
-                    id: req.session.sessionToken
-                }).value().userId
-            }).value().username;
+            try {
+                return req.app.locals.db.get('users').find({
+                    id: req.app.locals.db.get('sessions').find({
+                        id: req.session.sessionToken
+                    }).value().userId
+                }).value().username;
+            } catch (err) {
+                console.log("user tried to log in with an expired or forged session", err);
+                this.addNotification(req, "Invalid session ID, you've been logged out, please log in again.");
+            }
+            
         } else {
             return false
         }
