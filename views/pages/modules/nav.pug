@@ -1,31 +1,29 @@
 mixin nav
     nav
         .container
-            .row
-                .col.left-nav 
-                    a(href="/") NuTracker
-                .col.right-nav
-                    if loggedInUser
-                        span.nav-userinfo.d-none.d-sm-inline You're logged in as 
-                            a(href="/user/"+loggedInUser) #{loggedInUser}
-                    else
-                        span.nav-userinfo
-                            a(href="/login").button.d-none.d-lg-inline Login
-                            a(href="/login").d-lg-none Login
-                    +button('I nutted!', '', 'new-fap')
-                    #nut-options
-                        +button('Quick nut', '/user/' + loggedInUser + '/fap')
-                    script.
-                        $(document).ready(() => {
-                            $('#new-fap').on('click', e => {
-                                e.preventDefault();
-                                $('#nut-options').toggleClass('opened');
-                            });
-
-                            $('.main-container').on('click', e => {
-                                $('#nut-options').removeClass('opened');
-                            });
+            .left-nav 
+                a(href="/") NuTracker
+            .right-nav
+                if loggedInUser
+                    span.nav-userinfo.d-none.d-sm-inline You're logged in as 
+                        a(href="/user/"+loggedInUser) #{loggedInUser}
+                else
+                    span.nav-userinfo
+                        a(href="/login").button Login
+                +button('I nutted!', '', 'new-fap')
+                #nut-options
+                    +button('Quick nut', '/user/' + loggedInUser + '/fap')
+                script.
+                    $(document).ready(() => {
+                        $('#new-fap').on('click', e => {
+                            e.preventDefault();
+                            $('#nut-options').toggleClass('opened');
                         });
+
+                        $('.main-container').on('click', e => {
+                            $('#nut-options').removeClass('opened');
+                        });
+                    });
     #notification-container
         if notifications
             each notification in notifications

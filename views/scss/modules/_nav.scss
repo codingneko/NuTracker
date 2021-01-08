@@ -2,49 +2,53 @@
 nav {
     padding: 1rem 0rem;
     background-color: $secondary-color;
-
-    .left-nav {
-        font-size: 1.2rem;
-        font-weight: 700;
-    }
-    
-    .right-nav {
-        position: relative;
-        text-align: right;
-
-        @include media-breakpoint-down(sm) {
-            padding-top: 0.2rem;
-        }
-    }
-
-    #nut-options {
-        min-height: 0px;
-        height: 0px;
-        overflow: hidden;
-        position: absolute;
-        right: 0;
-        top: 2.7rem;
-        padding: 2rem 0rem;
-        display: none;
-        background: $secondary-color;
-        text-align: center;
-        border-radius: 0rem 0rem 2rem 2rem;
+    .container {
+        display: flex;
+        justify-content: space-between;
         
-        .button {
-            display: block;
-            width: 80%;
-            margin:auto;
+        .left-nav {
+            font-size: 1.2rem;
+            font-weight: 700;
         }
-
-        &.opened{
-            display: block;
-            min-height: 5rem;
-            height: auto;
-            width: 10rem;
+        
+        .right-nav {
+            position: relative;
+            text-align: right;
+    
+            @include media-breakpoint-down(sm) {
+                padding-top: 0.2rem;
+            }
         }
-    }
-
-    .nav-userinfo {
-        margin-right: 2rem;
+    
+        #nut-options {
+            min-height: 0px;
+            height: 0px;
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            top: 2.7rem;
+            padding: 2rem 0rem;
+            display: none;
+            background: $secondary-color;
+            text-align: center;
+            border-radius: 0rem 0rem 2rem 2rem;
+            
+            .button {
+                display: block;
+                width: 80%;
+                margin:auto;
+            }
+    
+            &.opened{
+                display: block;
+                min-height: 5rem;
+                height: auto;
+                width: 10rem;
+            }
+        }
+    
+        .nav-userinfo {
+            margin-right: 2rem;
+        }    
     }
 }

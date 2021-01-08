@@ -20,5 +20,7 @@ body
                 day. We have beautiful charts so it's easy to keep track of your 🌰s.
             .h4 Here are some of our most bonkable users
             .users
-                each user in users
-                    a(href="/user/"+user).user-title #{user} 
+                ul
+                    each user in users
+                        li 
+                            a(href="/user/"+user).user-title #{user} 
