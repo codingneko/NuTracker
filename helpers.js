@@ -9,6 +9,7 @@ var helpers = {
                 }).value().username;
             } catch (err) {
                 console.log("user tried to log in with an expired or forged session", err);
+                req.session.destroy();
                 helpers.addNotification(req, "Invalid session ID, you've been logged out, please log in again.");
             }
             
