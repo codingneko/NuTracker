@@ -66,7 +66,7 @@ app.get('/', controllers.front.index);
 
 app.get('/user/:user', controllers.front.users.user);
 
-app.get('/user/:user/fap', controllers.front.users.fap);
+app.get('/user/:user/nut', controllers.front.users.nut);
 
 app.get('/register', controllers.front.users.register);
 
@@ -85,7 +85,7 @@ app.get('/privacy', (req, res) => {
  *
  */
 
-// ENDPOINT: Query user faps
+// ENDPOINT: Query user nuts
 app.get('/api/user/:user/:count?/:from?/:to?', controllers.api.users.user);
 
 // ENDPOINT: Register new users
@@ -97,8 +97,8 @@ app.post('/api/login', controllers.api.users.login);
 // ENDPOINT: Logout
 app.post('/api/logout', controllers.api.users.logout);
 
-// ENDPOINT: Create faps
-app.post('/api/fap/:user', controllers.api.faps.create);
+// ENDPOINT: Create nuts
+app.post('/api/nut/:user', controllers.api.nuts.create);
 
 
 setInterval(async () => {

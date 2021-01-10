@@ -16,9 +16,9 @@ body
             .row
                 .col-sm
                     h1.user-title=user+'\'s nut history'
-                    .general-fap-info
-                        .grand-total #{user} has nutted a grand total of #{faps.length} times.
+                    .general-nut-info
+                        .grand-total #{user} has nutted a grand total of #{nuts.length} times.
 
                     .chart-container
                         h4 Weekly chart
-                        +weekly-chart(faps)
+                        +weekly-chart(nuts)

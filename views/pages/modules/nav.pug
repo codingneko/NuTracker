@@ -10,12 +10,12 @@ mixin nav
                 else
                     span.nav-userinfo
                         a(href="/login").button Login
-                +button('I nutted!', '', 'new-fap')
+                +button('I nutted!', '', 'new-nut')
                 #nut-options
-                    +button('Quick nut', '/user/' + loggedInUser + '/fap')
+                    +button('Quick nut', '/user/' + loggedInUser + '/nut')
                 script.
                     $(document).ready(() => {
-                        $('#new-fap').on('click', e => {
+                        $('#new-nut').on('click', e => {
                             e.preventDefault();
                             $('#nut-options').toggleClass('opened');
                         });

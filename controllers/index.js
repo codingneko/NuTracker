@@ -8,15 +8,15 @@ module.exports = {
             login: require('./api/users/login'),
             logout: require('./api/users/logout')
         },
-        faps: {
-            create: require('./api/faps/create')
+        nuts: {
+            create: require('./api/nuts/create')
         }
     },
     front: {
         index: require('./front/index'),
         users: {
             user: require('./front/users/user'),
-            fap: require('./front/users/submitFap'),
+            nut: require('./front/users/submitNut'),
             register: require('./front/users/register'),
             registerSubmit: require('./front/users/registerSubmit'),
             login: require('./front/users/login'),

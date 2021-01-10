@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
         const savedUser = await user.save();
         res.json({
             status: 'Success',
-            newUser: savedUser
+            newUser: savedUser.username
         });
     } catch (err) {
         res.status(500).json({
