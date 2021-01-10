@@ -14,3 +14,30 @@ body {
 .main-container {
     padding-top: 4rem;
 }
+
+.table-container {
+    border: 1px solid $secondary-color;
+    border-radius: 0.4rem;
+    margin-top: 2rem;
+    overflow: hidden;
+
+    .unbordered-table {
+        margin-bottom: 0;
+
+        th, td {
+            border: 0px !important;
+            padding: 0.5rem 2rem;
+        }
+        thead {
+            background-color: $secondary-color;
+        }
+        tbody {
+            tr:nth-of-type(odd) {
+                background-color: #F8BAC5;
+            }
+            tr:nth-of-type(even) {
+                background-color: $secondary-color;
+            }
+        }
+    }
+}

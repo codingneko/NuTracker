@@ -18,9 +18,19 @@ body
                 NuTracker is a tracker for your 🌰s. You tell us when you cum, we save it 
                 in our shitty database in case you want to see how many times you 🌰ed a certain
                 day. We have beautiful charts so it's easy to keep track of your 🌰s.
-            .h4 Here are some of our most bonkable users
+            .h4 Top 20 most bonkable users:
             .users
-                ul
-                    each user in users
-                        li 
-                            a(href="/user/"+user).user-title #{user} 
+                .table-container
+                    table.table.table-striped.unbordered-table
+                        thead
+                            tr
+                                th(scope='col') #
+                                th(scope='col') Username
+                                th(scope='col') Total nuts
+                        tbody
+                            each user, number in users
+                                tr(style="position:relative;")
+                                    th(scope='row')
+                                        a(href="/user/"+user.name).stretched-link #{number+1}
+                                    td #{user.name}
+                                    td #{user.fapCount}
