@@ -29,8 +29,9 @@ body
                                 th(scope='col') Total nuts
                         tbody
                             each user, number in users
-                                tr(style="position:relative;")
-                                    th(scope='row')
-                                        a(href="/user/"+user.name).stretched-link #{number+1}
+                                tr(style="transform: rotate(0);")
+                                    th(scope='row') 
+                                        a(href="/user/"+user.name).stretched-link. 
+                                            #{number+1}
                                     td #{user.name}
                                     td #{user.fapCount}
