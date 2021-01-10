@@ -111,7 +111,7 @@ setInterval(async () => {
 }, 60*1000);
 
 process.on('SIGINT', async () => {
-    await Session.remove();
+    await Session.deleteMany();
     console.log("Terminating all sessions before exiting...");
     process.exit();
 });
