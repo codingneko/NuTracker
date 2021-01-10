@@ -33,7 +33,9 @@ var helpers = {
     },
 
     addNotification: (req, text) => {
-        if (typeof req.session.notification !== 'undefined' && !req.session.notification.shown) {
+        if (typeof req.session !== 'undefined' && 
+            typeof req.session.notification !== 'undefined' && 
+            !req.session.notification.shown) {
             req.session.notification.shown = false;
             req.session.notification.items.push(text);
         } else {
