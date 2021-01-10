@@ -7,25 +7,23 @@ module.exports = async (req, res) => {
 
     var users = [];
     var dbUsers = await User.find().limit(20);
-    dbUsers.forEach(user => {
+    for (user of dbUsers) {
         var frontUser = {}
-        Nut.find({
-            userId: user._id
-        }).then(nuts => {
-            frontUser.nutCount = nuts.length;
-            frontUser.name = user.username;
+        var nuts = await Nut.find();
 
-            users.push(frontUser);
-    
-            users.sort((a, b) => {
-                return b.fapCount - a.fapCount
-            });
+        frontUser.nutCount = nuts.length;
+        frontUser.name = user.username;
 
-            res.render("pages/index", {
-                users: users,
-                loggedInUser: loggedInUser,
-                notifications: helpers.getNotifications(req)
-            });
-        });
+        users.push(frontUser);
+    };
+
+    users.sort((a, b) => {
+        return b.fapCount - a.fapCount
+    });
+
+    res.render("pages/index", {
+        users: users,
+        loggedInUser: loggedInUser,
+        notifications: helpers.getNotifications(req)
     });
 }
