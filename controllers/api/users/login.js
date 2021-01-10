@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
             expiry: savedSession.expiry
         });
     } else {
-        res.status(404).json({
+        res.status(401).json({
             status: 'Wrong username or password'
         });
     }
