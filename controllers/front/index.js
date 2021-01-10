@@ -9,7 +9,9 @@ module.exports = async (req, res) => {
     var dbUsers = await User.find().limit(20);
     for (user of dbUsers) {
         var frontUser = {}
-        var nuts = await Nut.find();
+        var nuts = await Nut.find({
+            userId: user._id
+        });
 
         frontUser.nutCount = nuts.length;
         frontUser.name = user.username;
@@ -18,7 +20,7 @@ module.exports = async (req, res) => {
     };
 
     users.sort((a, b) => {
-        return b.fapCount - a.fapCount
+        return b.nutCount - a.nutCount
     });
 
     res.render("pages/index", {
