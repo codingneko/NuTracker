@@ -28,7 +28,7 @@ app.set('trust proxy', 1);
 const controllers = require('./controllers/index');
 
 //Define domain name
-app.locals.base_url = 'http://localhost';
+app.locals.base_url = process.env.BASEURL || 'http://localhost';
 
 //Connect to mongodb
 mongoose.connect(
