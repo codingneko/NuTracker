@@ -1,14 +1,16 @@
+const User = require('./models/User');
+const Session = require('./models/Session');
+
 var helpers = {
-    getLoggedInUser: req => {
+    getLoggedInUser: async req => {
         if (typeof req.session.sessionToken !== 'undefined') {
             try {
-                return req.app.locals.db.get('users').find({
-                    id: req.app.locals.db.get('sessions').find({
-                        id: req.session.sessionToken
-                    }).value().userId
-                }).value().username;
+                var session = await Session.findById(req.session.sessionToken);
+                var user = await User.findById(session.userId);
+
+                return user.username;
             } catch (err) {
-                console.log("user tried to log in with an expired or forged session", err);
+                console.log("User tried to log in with an expired or forged session", err);
                 req.session.destroy();
                 helpers.addNotification(req, "Invalid session ID, you've been logged out, please log in again.");
             }

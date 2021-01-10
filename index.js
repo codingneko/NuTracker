@@ -4,15 +4,19 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const sass = require('node-sass-middleware');
 
-//Import Lowapp.locals.db
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const loadashId = require('lodash-id');
+//Import mongoose
+const mongoose = require('mongoose');
+const Session = require('./models/Session');
+
+//Import .env vars
+require('dotenv').config({
+    silent:true
+});
 
 //Import Express
 const express = require('express');
 const app = express();
-app.locals.port = 80;
+app.locals.port = process.env.PORT || 80;
 
 //Set view engine
 app.set('view engine', 'pug');
@@ -20,29 +24,18 @@ app.set('view engine', 'pug');
 //trust first proxy
 app.set('trust proxy', 1);
 
-//Import nanoid
-app.locals.nanoid = require('nanoid').nanoid;
-
 //Import route controllers
 const controllers = require('./controllers/index');
-const user = require('./controllers/api/users/user');
-
-//import crypto
-app.locals.crypto = require('crypto');
 
 //Define domain name
 app.locals.base_url = 'http://localhost';
 
-//Create database
-const adapter = new FileSync('db.json');
-app.locals.db = low(adapter);
-app.locals.db._.mixin(loadashId);
-
-app.locals.db.defaults({
-    users: [],
-    sessions: [],
-    faps: []
-}).write();
+//Connect to mongodb
+mongoose.connect(
+    process.env.MONGO_CONNECTION_STRING, 
+    { useNewUrlParser: true, useUnifiedTopology: true }, 
+    () => console.log('Connected to Mongo DB')
+);
 
 //register middleware
 app.use(bodyParser.json());
@@ -55,7 +48,7 @@ app.use(sass({
 }));
 app.use(express.static(__dirname + '/public'));
 app.use(session({
-    secret: '83BAQ6IAW5BYlVBYOrvD',
+    secret: process.env.SESSION_SECRET || '83BAQ6IAW5BYlVBYOrvD',
     resave: false,
     saveUninitialized: true,
 
@@ -108,13 +101,17 @@ app.post('/api/logout', controllers.api.users.logout);
 app.post('/api/fap/:user', controllers.api.faps.create);
 
 
-setInterval(() => {
-    app.locals.db.get('sessions').remove(session => session.expiry < Date.now()).write();
+setInterval(async () => {
+    Session.deleteMany({
+        expiry: {
+            $lte: Date.now()
+        }
+    });
     console.log("Terminating expired sessions...");
 }, 60*1000);
 
-process.on('SIGINT', () => {
-    app.locals.db.get('sessions').remove().write();
+process.on('SIGINT', async () => {
+    await Session.remove();
     console.log("Terminating all sessions before exiting...");
     process.exit();
 });

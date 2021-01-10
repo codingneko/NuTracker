@@ -31,3 +31,6 @@ public/css/app.css
 
 #database
 db.json
+
+#env file
+.env
