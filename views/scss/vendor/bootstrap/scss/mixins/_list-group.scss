@@ -6,13 +6,14 @@
     background-color: $background;
 
     &.list-group-item-action {
-      @include hover-focus {
+      &:hover,
+      &:focus {
         color: $color;
-        background-color: darken($background, 5%);
+        background-color: shade-color($background, 10%);
       }
 
       &.active {
-        color: #fff;
+        color: $white;
         background-color: $color;
         border-color: $color;
       }
