@@ -4,19 +4,19 @@ const User = require('../../../models/User');
 const Session = require('../../../models/Session');
 
 module.exports = async (req, res) => {
-    var shasum = crypto.createHash('sha1');
+    let shasum = crypto.createHash('sha1');
     shasum.update(req.body.password);
-    var encryptedPassword = shasum.digest('hex');
+    let encryptedPassword = shasum.digest('hex');
 
-    var userData = {
+    let userData = {
         username: req.body.username,
         password: encryptedPassword
     }
 
-    var user = await User.findOne(userData);
+    let user = await User.findOne(userData);
 
     if (user !== null) {
-        var session = new Session({
+        let session = new Session({
             userId: user._id
         });
 

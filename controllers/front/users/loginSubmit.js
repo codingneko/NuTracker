@@ -2,12 +2,12 @@ const axios = require('axios');
 const helpers = require('../../../helpers');
 
 module.exports =  async (req, res) => {
-    var requestData = {
+    let requestData = {
         username: req.body.username,
         password: req.body.password
     }
 
-    var responseData = await axios({
+    let responseData = await axios({
         method: 'post',
         url: req.app.locals.base_url + '/api/login',
         data: requestData
