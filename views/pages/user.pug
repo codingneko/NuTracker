@@ -2,12 +2,12 @@ include ./_mixins.pug
 
 head
     +head-imports
-    title=user
+    title=user.username
     meta(name="twitter:card" content="summary")
     meta(property="og:url" content="https://nutracker.fun")
     meta(property="og:image" content="https://nutracker.fun/assets/twitter.png")
     meta(property="og:description" content="Check out " + user.username + " in NuTracker, a tracker for your 🌰s.")
-    meta(property="og:title" content=user + " in NuTracker")
+    meta(property="og:title" content=user.username + " in NuTracker")
 
 body
     +nav
