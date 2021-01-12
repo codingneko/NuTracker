@@ -5,23 +5,45 @@ var Nut = require('../../models/Nut');
 module.exports = async (req, res) => {
     var loggedInUser = await helpers.getLoggedInUser(req);
 
-    var users = [];
-    var dbUsers = await User.find().limit(20);
-    for (user of dbUsers) {
-        var frontUser = {}
-        var nuts = await Nut.find({
-            userId: user._id
-        });
-
-        frontUser.nutCount = nuts.length;
-        frontUser.name = user.username;
-
-        users.push(frontUser);
-    };
-
-    users.sort((a, b) => {
-        return b.nutCount - a.nutCount
-    });
+    var users = await User.aggregate(
+        [
+            {
+                $project: {
+                    _id: {
+                        "$toString": "$_id"
+                    },
+                    username: 1
+                }
+            },
+            {
+                $lookup: {
+                        from: 'nuts',
+                        localField: '_id',
+                        foreignField: 'userId',
+                        as: 'nuts'
+                }
+            },
+            {
+                $unwind: '$nuts'
+            },
+            {
+                $group: {
+                    _id: '$_id',
+                    username: {
+                        '$first': '$username'
+                    },
+                    nuts: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    username: 1,
+                    nutCount: "$nuts"
+                }
+            }
+        ]
+    ).sort({ "nutCount": -1 }).limit(20);
 
     res.render("pages/index", {
         users: users,

@@ -31,7 +31,7 @@ body
                             each user, number in users
                                 tr(style="transform: rotate(0);")
                                     th(scope='row') 
-                                        a(href="/user/"+user.name).stretched-link. 
+                                        a(href="/user/"+user.username).stretched-link. 
                                             #{number+1}
-                                    td #{user.name}
+                                    td #{user.username}
                                     td #{user.nutCount}
