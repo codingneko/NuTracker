@@ -1,12 +1,23 @@
-module.exports = (req, res) => {
-    var user = req.app.locals.db.get('users').find({username: req.params.user}).value();
+const User = require('../../../models/User');
+const Nut = require('../../../models/Nut');
 
-    if (typeof user !== "undefined"){
-        res.json(req.app.locals.db.get('faps').filter({userId: user.id}).value());
+module.exports = async (req, res) => {
+    var user = await User.findOne({
+        username: req.params.user
+    });
+
+    if (user !== null) {
+        var nuts = await Nut.find({
+            userId: user._id
+        });
+        if (nuts !== null) {
+            res.json(nuts);
+        } else {
+            res.json({});
+        }
     } else {
-        res.status('404')
-        res.json({
-            status: 'User not found'
+        res.status(404).json({
+            status: 'User not found.'
         });
     }
 }

@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
         try {
             var responseData = await axios({
                 method: 'post',
-                url: req.app.locals.base_url + `/api/fap/${req.params.user}`,
+                url: req.app.locals.base_url + `/api/nut/${req.params.user}`,
                 data: {
                     sessionId: req.session.sessionToken
                 }
@@ -16,9 +16,9 @@ module.exports = async (req, res) => {
             });
 
             if(responseData.data.status === 'Success') {
-                helpers.addNotification(req, 'Successfully fapped!')
+                helpers.addNotification(req, 'Successfully nutted!')
             } else {
-                helpers.addNotification(req, 'Something went wrong when submitting your fap :<');
+                helpers.addNotification(req, 'Something went wrong when submitting your nut :<');
             }
 
             res.redirect(req.headers.referer || '/');
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
             res.status(500).redirect(req.headers.referer || '/');
         }
     } else {
-        console.log('Attempted to fap without a session token', req.session.sessionToken);
+        console.log('Attempted to nut without a session token', req.session.sessionToken);
         res.status(401).redirect('/register');
     }
 }

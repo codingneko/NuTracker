@@ -1,18 +1,26 @@
 var helpers = require('../../helpers');
+var User = require('../../models/User');
+var Nut = require('../../models/Nut');
 
 module.exports = async (req, res) => {
-    var loggedInUser = helpers.getLoggedInUser(req);
+    var loggedInUser = await helpers.getLoggedInUser(req);
 
     var users = [];
-    req.app.locals.db.get('users').value().forEach(user => {
+    var dbUsers = await User.find().limit(20);
+    for (user of dbUsers) {
         var frontUser = {}
-        frontUser.fapCount = req.app.locals.db.get('faps').filter({userId: user.id}).value().length;
+        var nuts = await Nut.find({
+            userId: user._id
+        });
+
+        frontUser.nutCount = nuts.length;
         frontUser.name = user.username;
-        if (users.length < 20) users.push(frontUser);
-    });
-    
+
+        users.push(frontUser);
+    };
+
     users.sort((a, b) => {
-        return b.fapCount - a.fapCount
+        return b.nutCount - a.nutCount
     });
 
     res.render("pages/index", {
