@@ -44,6 +44,7 @@ body {
 
 .mobile-users-container {
     flex-wrap: wrap;
+    justify-content: space-around;
     .card {
         width: 10rem;
         background-color: #F8BAC5;
