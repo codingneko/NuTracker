@@ -25,6 +25,12 @@ body
                         .form-group.mt-3
                             label(for="avatar-field") Change avatar
                             input(type="url", name="avatar" id="avatar-field" value=user.avatar).form-control
+                            .form-field-info-box.
+                                We currently do not support uploading, you can however set a link to an image here. Just upload it to
+                                Imgur and copy the image link.
+                                Note that imageboards tend to have temporary links. 
+                                If you copied the link from an imageboard and it stops working, it's because your link expired. 
+                                Try to avoid imageboards like Danbooru, Gelbooru, Sankaku or any other image links that might expire.
 
                         .form-group.mt-3
                             input(type="submit" name="submit").button
