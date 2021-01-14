@@ -1,0 +1,13 @@
+mixin avatar(url)
+    .avatar-container
+        img(src=user.avatar, alt="").avatar
+    script.
+        document.querySelectorAll('.avatar-container').forEach(e => {
+            e.style.height = e.clientWidth
+        });
+        window.addEventListener('resize', e=> {
+            document.querySelectorAll('.avatar-container').forEach(e => {
+                e.style.height = e.clientWidth
+            });
+        });
+        

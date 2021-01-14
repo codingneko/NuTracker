@@ -1,0 +1,30 @@
+include ./_mixins.pug
+
+head
+    +head-imports
+    title=user.username
+    meta(name="twitter:card" content="summary")
+    meta(property="og:url" content="https://nutracker.fun")
+    meta(property="og:image" content="https://nutracker.fun/assets/twitter.png")
+    meta(property="og:description" content="Check out " + user.username + " in NuTracker, a tracker for your 🌰s.")
+    meta(property="og:title" content=user.username + " in NuTracker")
+
+body
+    +nav
+    .main-container
+        .container
+            .row
+                .col-lg-3
+                    +avatar(user.avatar)
+                .col-lg-9
+                    form(action="/settings/submit" method="post")
+                        .form-group
+                            label(for="username-field") Change username
+                            input(type="text", name="username" id="username-field" value=user.username).form-control
+
+                        .form-group.mt-3
+                            label(for="avatar-field") Change avatar
+                            input(type="url", name="avatar" id="avatar-field" value=user.avatar).form-control
+
+                        .form-group.mt-3
+                            input(type="submit" name="submit").button

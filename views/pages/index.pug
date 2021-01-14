@@ -20,18 +20,32 @@ body
                 day. We have beautiful charts so it's easy to keep track of your 🌰s.
             .h4 Top 20 most bonkable users:
             .users
-                .table-container
-                    table.table.table-striped.unbordered-table
+                .table-container.d-none.d-md-block
+                    table.table.table-striped.unbordered-table.table-hover
                         thead
                             tr
+                                th(scope='col') 
                                 th(scope='col') #
                                 th(scope='col') Username
                                 th(scope='col') Total nuts
                         tbody
                             each user, number in users
                                 tr(style="transform: rotate(0);")
-                                    th(scope='row') 
+                                    td
+                                        .leaderboard-avatar
+                                            img(src=user.avatar)
+                                    th(scope='row')
                                         a(href="/user/"+user.username).stretched-link. 
                                             #{number+1}
                                     td #{user.username}
                                     td #{user.nutCount}
+                .mobile-users-container.d-flex.d-md-none
+                    each user, number in users
+                        .card.mt-2.mb-2
+                            .card-img-top
+                                img(src=user.avatar)
+                            .card-body
+                                h5 #{user.username}
+                                p Rank: ##{number+1}
+                                p Nut count: #{user.nutCount}
+                                a(href="/user/"+user.username).stretched-link

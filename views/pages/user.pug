@@ -13,12 +13,17 @@ body
     +nav
     .main-container
         .container
-            .row
-                .col-sm
+            .row.justify-content-end
+                .col-lg-10
                     h1.user-title=user.username+'\'s nut history'
-                    .general-nut-info
+                        
+            .row
+                .col-lg-2.mt-3
+                    +avatar(user.avatar)
+                    .general-nut-info.mt-3
                         .grand-total #{user.username} has nutted a grand total of #{user.nuts.length} times.
 
-                    .chart-container
+                .col-lg-10
+                    .chart-container.mt-3
                         h4 Weekly chart
                         +weekly-chart(user.nuts)
