@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 
     if (user) {
         res.render('pages/user-settings', {
-            getLoggedInUser: user.username,
+            loggedInUser: user.username,
             user: user,
             notifications: helpers.getNotifications(req)
         });
