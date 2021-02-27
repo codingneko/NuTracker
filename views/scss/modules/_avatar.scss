@@ -5,14 +5,17 @@
     border-radius: 8rem;
     max-width: 15rem;
 
+
     @include media-breakpoint-down (md) {
         margin:auto;
         margin-bottom: 2rem;
     }
 
     .avatar {
-        background-color: $white;
+        background-color: $secondary-color;
+        height: 100%;
         width: 100%;
+        object-fit: cover;
     }
 }
 

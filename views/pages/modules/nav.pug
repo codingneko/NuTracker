@@ -12,9 +12,9 @@ mixin nav
                         a(href="/login").button Login
                 +hamburger
                 #nut-options
-                    a(href="/user/"+loggedInUser+"/nut").nav-link Quick nut
-                    a(href="/not-yet").nav-link Custom nut
+                    a(href="/custom-nut").nav-link Custom nut
                     a(href="/settings").nav-link Settings
+                    a(href="/user/"+loggedInUser+"/nut").nav-link.button Quick nut
                 script.
                     $(document).ready(() => {
                         $('.hamburger').on('click', e => {

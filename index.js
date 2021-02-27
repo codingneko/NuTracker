@@ -80,6 +80,10 @@ app.get('/settings', controllers.front.users.settings);
 
 app.post('/settings/submit', controllers.front.users.settingsSubmit);
 
+app.get('/custom-nut', controllers.front.users.customNut);
+
+app.post('/custom-nut', controllers.front.users.customNutSubmit);
+
 app.get('/privacy', (req, res) => {
     res.render('pages/privacy');
 });

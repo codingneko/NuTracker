@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     });
 
     if (user) {
-        res.render('pages/user-settings', {
+        res.render("pages/custom-nut", {
             loggedInUser: user.username,
             user: user,
             notifications: helpers.getNotifications(req)
