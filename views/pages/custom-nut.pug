@@ -2,7 +2,7 @@ include ./_mixins.pug
 
 head
     +head-imports
-    title Not yet!
+    title Add a custom nut!
     
 body
     +nav
@@ -18,8 +18,8 @@ body
                     span.add-on
                         i(data-time-icon="icon-time", data-date-icon="icon-calendar") 
                 .mb-3 
-                    label(for="observations") Observations
-                    span.info-tooltip(data-toggle="tooltip", data-placement="right", title="There is no way of seing this currently, but it will be implemented soon")  ?
-                    textarea(rows=3, placeholder="Leave empty if none", name="observations").form-control#observations
+                    label(for="observations") Observations 
+                    span.info-tooltip(data-toggle="tooltip", data-placement="right", title="There is no way of seing this currently, but it will be implemented soon.") ?
+                    textarea(rows=3, placeholder="A short description of your nut or any other thing you might want to remember... Leave empty if nothing.", name="observations").form-control#observations
                 .mb-3
                     input(type="submit" value="Submit").button

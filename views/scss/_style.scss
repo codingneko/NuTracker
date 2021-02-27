@@ -74,4 +74,15 @@ body {
         height: 3rem;
         padding: 1.5rem;
     }
+
+    #observations {
+        margin-top: 0.5rem;
+    }
+
+    .info-tooltip {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
 }
