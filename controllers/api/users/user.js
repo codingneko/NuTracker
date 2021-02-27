@@ -13,7 +13,8 @@ module.exports = async (req, res) => {
                 _id: {
                     "$toString": "$_id"
                 },
-                username: 1
+                username: 1,
+                avatar: 1
             }
         },
         {
@@ -27,6 +28,7 @@ module.exports = async (req, res) => {
         {
             $project: {
                 username: 1,
+                avatar: 1,
                 _id: 0,
                 nuts: 1
             }

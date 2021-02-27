@@ -20,7 +20,9 @@ module.exports = {
             register: require('./front/users/register'),
             registerSubmit: require('./front/users/registerSubmit'),
             login: require('./front/users/login'),
-            loginSubmit: require('./front/users/loginSubmit')
+            loginSubmit: require('./front/users/loginSubmit'),
+            settings: require('./front/users/settings'),
+            settingsSubmit: require('./front/users/settingsSubmit')
         }
     }
 }

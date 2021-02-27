@@ -1,0 +1,27 @@
+.avatar-container {
+    width: 100%;
+    overflow: hidden;
+    border: 2px solid $primary-color;
+    border-radius: 8rem;
+    max-width: 15rem;
+
+    @include media-breakpoint-down (md) {
+        margin:auto;
+        margin-bottom: 2rem;
+    }
+
+    .avatar {
+        background-color: $white;
+        width: 100%;
+    }
+}
+
+.leaderboard-avatar{
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 3rem;
+    overflow: hidden;
+    img {
+        width: 100%;
+    }
+}

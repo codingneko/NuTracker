@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
 
     //render results
     const user = await axios.get(`${req.app.locals.base_url}/api/user/${req.params.user}`);
-    console.log(user);
+    
     res.render('pages/user', {
         loggedInUser: loggedInUser, 
         user: user.data,

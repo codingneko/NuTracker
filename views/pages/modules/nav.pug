@@ -1,7 +1,7 @@
 mixin nav
     nav
         .container
-            .left-nav 
+            .left-nav
                 a(href="/") NuTracker
             .right-nav
                 if loggedInUser
@@ -10,18 +10,20 @@ mixin nav
                 else
                     span.nav-userinfo
                         a(href="/login").button Login
-                +button('I nutted!', '', 'new-nut')
+                +hamburger
                 #nut-options
-                    +button('Quick nut', '/user/' + loggedInUser + '/nut')
+                    a(href="/user/"+loggedInUser+"/nut").nav-link Quick nut
+                    a(href="/not-yet").nav-link Custom nut
+                    a(href="/settings").nav-link Settings
                 script.
                     $(document).ready(() => {
-                        $('#new-nut').on('click', e => {
-                            e.preventDefault();
+                        $('.hamburger').on('click', e => {
                             $('#nut-options').toggleClass('opened');
                         });
 
                         $('.main-container').on('click', e => {
                             $('#nut-options').removeClass('opened');
+                            $('.hamburger').removeClass('opened').attr('aria-expanded', false);
                         });
                     });
     #notification-container

@@ -76,8 +76,16 @@ app.get('/login', controllers.front.users.login);
 
 app.post('/login/submit', controllers.front.users.loginSubmit);
 
+app.get('/settings', controllers.front.users.settings);
+
+app.post('/settings/submit', controllers.front.users.settingsSubmit);
+
 app.get('/privacy', (req, res) => {
     res.render('pages/privacy');
+});
+
+app.get('/not-yet', (req, res) => {
+    res.render("pages/not-yet");
 });
 
 /**

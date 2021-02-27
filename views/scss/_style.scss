@@ -41,3 +41,27 @@ body {
         }
     }
 }
+
+.mobile-users-container {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .card {
+        width: 10rem;
+        background-color: #F8BAC5;
+        margin: 0.2rem;
+        border: 1px solid $primary-color;
+        p {
+            margin-bottom: 0;
+        }
+        
+        .card-img-top {
+            background: $white;
+            overflow: hidden;
+            width: calc(10rem - 2px);
+            height: 10rem;
+            img {
+                width: 100%;
+            }
+        }
+    }   
+}
