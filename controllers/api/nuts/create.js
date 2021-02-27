@@ -14,6 +14,7 @@ module.exports = async (req, res) => {
         if (user !== null) {            
             var nut = new Nut({
                 userId: user.id,
+                date: req.body.date,
                 observations: req.body.observations
             });
 

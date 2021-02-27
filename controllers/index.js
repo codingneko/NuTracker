@@ -22,7 +22,9 @@ module.exports = {
             login: require('./front/users/login'),
             loginSubmit: require('./front/users/loginSubmit'),
             settings: require('./front/users/settings'),
-            settingsSubmit: require('./front/users/settingsSubmit')
+            settingsSubmit: require('./front/users/settingsSubmit'),
+            customNut: require('./front/users/customNut'),
+            customNutSubmit: require('./front/users/customNutSubmit')
         }
     }
 }
