@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
                 helpers.addNotification(req, 'Something went wrong when submitting your nut :<');
             }
 
-            res.redirect('/');
+            res.redirect(`/user/${req.body.user ||await helpers.getLoggedInUser(req)}`);
         } catch (err){
             console.log(err);
             res.status(500).redirect(req.headers.referer || '/');
