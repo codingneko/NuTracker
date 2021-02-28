@@ -12,9 +12,15 @@ mixin nav
                         a(href="/login").button Login
                 +hamburger
                 #nut-options
-                    a(href="/custom-nut").nav-link Custom nut
-                    a(href="/settings").nav-link Settings
-                    a(href="/user/"+loggedInUser+"/nut").nav-link.button Quick nut
+                    if loggedInUser 
+                        a(href="/user/"+loggedInUser).nav-link Profile
+                        a(href="/custom-nut").nav-link Custom nut
+                        a(href="/settings").nav-link Settings
+                        a(href="/user/"+loggedInUser+"/nut").nav-link.button Quick nut
+                    else
+                        a(href="/login").nav-link You're not logged in :<
+                        a(href="/login").nav-link.button Login
+                        a(href="/register").nav-link.button Register
                 script.
                     $(document).ready(() => {
                         $('.hamburger').on('click', e => {
