@@ -11,6 +11,7 @@ nav {
         .left-nav {
             font-size: 1.2rem;
             font-weight: 700;
+            z-index: 11;
         }
         
         .right-nav {
@@ -27,13 +28,12 @@ nav {
             position:fixed;
             display: block;
             right: -18rem;
-            top: 4rem;
             width: 18rem;
             height: 100vh;
             background-color: $secondary-color;
             transition: right .2s ease-in-out;
             z-index: 10;
-            padding-top: 1rem;
+            padding-top: 4rem;
 
             .nav-link {
                 margin-left: 2rem;
@@ -76,11 +76,13 @@ nav {
             &.opened{
                 min-height: 5rem;
                 right: 0rem;
+                z-index: 9;
             }
         }
     
         .nav-userinfo {
             margin-right: 2rem;
+            z-index: 11;
         }    
     }
 }

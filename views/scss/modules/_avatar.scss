@@ -4,6 +4,7 @@
     border: 2px solid $primary-color;
     border-radius: 8rem;
     max-width: 15rem;
+    margin: auto;
 
 
     @include media-breakpoint-down (md) {

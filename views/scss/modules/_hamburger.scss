@@ -4,6 +4,7 @@
     cursor: pointer;
     display: flex;
     padding: 0;
+    z-index: 11;
 
     &:focus {
         outline: none;

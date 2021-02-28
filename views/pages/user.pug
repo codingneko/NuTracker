@@ -21,8 +21,12 @@ body
                 .col-lg-2.mt-3
                     +avatar(user.avatar)
                     .general-nut-info.mt-3
-                        .grand-total #{user.username} has nutted a grand total of #{user.nuts.length} times.
-
+                        .grand-total
+                            i.bi.bi-nut-fill
+                            span.number #{user.nuts.length}
+                        .user-rank
+                            i.bi.bi-trophy-fill 
+                            span.number ##{user.rank}
                 .col-lg-10
                     .chart-container.mt-3
                         h4 Weekly chart

@@ -18,10 +18,10 @@ module.exports = async (req, res) => {
             },
             {
                 $lookup: {
-                        from: 'nuts',
-                        localField: '_id',
-                        foreignField: 'userId',
-                        as: 'nuts'
+                    from: 'nuts',
+                    localField: '_id',
+                    foreignField: 'userId',
+                    as: 'nuts'
                 }
             },
             {
