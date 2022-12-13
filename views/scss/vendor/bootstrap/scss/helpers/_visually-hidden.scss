@@ -4,5 +4,5 @@
 
 .visually-hidden,
 .visually-hidden-focusable:not(:focus) {
-  @include visually-hidden();
+    @include visually-hidden();
 }

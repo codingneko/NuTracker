@@ -10,7 +10,7 @@ const Session = require('./models/Session');
 
 //Import .env vars
 require('dotenv').config({
-    silent:true
+    silent: true,
 });
 
 //Import Express
@@ -32,31 +32,34 @@ app.locals.base_url = process.env.BASEURL || 'http://localhost';
 
 //Connect to mongodb
 mongoose.connect(
-    process.env.MONGO_CONNECTION_STRING, 
-    { useNewUrlParser: true, useUnifiedTopology: true }, 
+    process.env.MONGO_CONNECTION_STRING,
+    { useNewUrlParser: true, useUnifiedTopology: true },
     () => console.log('Connected to Mongo DB')
 );
 
 //register middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(sass({
-    src: __dirname + '/views/scss',
-    dest: __dirname + '/public/css',
-    prefix:  '/css',
-    debug: true
-}));
+app.use(
+    sass({
+        src: __dirname + '/views/scss',
+        dest: __dirname + '/public/css',
+        prefix: '/css',
+        debug: true,
+    })
+);
 app.use(express.static(__dirname + '/public'));
-app.use(session({
-    secret: process.env.SESSION_SECRET || '83BAQ6IAW5BYlVBYOrvD',
-    resave: false,
-    saveUninitialized: true,
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET || '83BAQ6IAW5BYlVBYOrvD',
+        resave: false,
+        saveUninitialized: true,
 
-    cookie: { 
-        maxAge: 3*1000*60*60*24*30
-    }
-}));
-
+        cookie: {
+            maxAge: 3 * 1000 * 60 * 60 * 24 * 30,
+        },
+    })
+);
 
 /**
  * Create Front end endpoints
@@ -89,7 +92,7 @@ app.get('/privacy', (req, res) => {
 });
 
 app.get('/not-yet', (req, res) => {
-    res.render("pages/not-yet");
+    res.render('pages/not-yet');
 });
 
 /**
@@ -112,23 +115,22 @@ app.post('/api/logout', controllers.api.users.logout);
 // ENDPOINT: Create nuts
 app.post('/api/nut/:user', controllers.api.nuts.create);
 
-
 setInterval(async () => {
     Session.deleteMany({
         expiry: {
-            $lte: Date.now()
-        }
+            $lte: Date.now(),
+        },
     });
-    console.log("Terminating expired sessions...");
-}, 60*1000);
+    console.log('Terminating expired sessions...');
+}, 60 * 1000);
 
 process.on('SIGINT', async () => {
     await Session.deleteMany();
-    console.log("Terminating all sessions before exiting...");
+    console.log('Terminating all sessions before exiting...');
     process.exit();
 });
 
 //Start the web server
 app.listen(app.locals.port, () => {
-    console.log(`NuTracker listening at http://localhost:${app.locals.port}`)
+    console.log(`NuTracker listening at http://localhost:${app.locals.port}`);
 });

@@ -8,14 +8,14 @@ module.exports = async (req, res) => {
     if (session !== null) {
         var user = await User.findOne({
             username: req.params.user,
-            _id: session.userId
+            _id: session.userId,
         });
 
-        if (user !== null) {            
+        if (user !== null) {
             var nut = new Nut({
                 userId: user.id,
                 date: req.body.date,
-                observations: req.body.observations
+                observations: req.body.observations,
             });
 
             try {
@@ -23,23 +23,23 @@ module.exports = async (req, res) => {
 
                 res.json({
                     status: 'Success',
-                    nut: savedNut
+                    nut: savedNut,
                 });
             } catch (err) {
                 res.json({
-                    status: "Something went wrong on the server"
+                    status: 'Something went wrong on the server',
                 }).status(500);
             }
         } else {
             res.status(401);
             res.json({
-                status: 'Unauthorised'
+                status: 'Unauthorised',
             });
         }
     } else {
         res.status(401);
         res.json({
-            status: "Not logged in!"
+            status: 'Not logged in!',
         });
     }
-}
+};

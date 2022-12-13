@@ -8,19 +8,19 @@ module.exports = async (req, res) => {
 
     const user = new User({
         username: req.body.username,
-        password: encryptedPassword
+        password: encryptedPassword,
     });
 
     try {
         const savedUser = await user.save();
         res.json({
             status: 'Success',
-            newUser: savedUser.username
+            newUser: savedUser.username,
         });
     } catch (err) {
         res.status(500).json({
             status: 'Failed',
-            err: err
+            err: err,
         });
     }
-}
+};

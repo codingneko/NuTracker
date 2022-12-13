@@ -9,25 +9,35 @@ module.exports = async (req, res) => {
                 method: 'post',
                 url: req.app.locals.base_url + `/api/nut/${req.params.user}`,
                 data: {
-                    sessionId: req.session.sessionToken
-                }
-            }).catch (err => {
-                helpers.addNotification(req, 'Something went wrong, server returned' + err.response.status);
+                    sessionId: req.session.sessionToken,
+                },
+            }).catch((err) => {
+                helpers.addNotification(
+                    req,
+                    'Something went wrong, server returned' +
+                        err.response.status
+                );
             });
 
-            if(responseData.data.status === 'Success') {
-                helpers.addNotification(req, 'Successfully nutted!')
+            if (responseData.data.status === 'Success') {
+                helpers.addNotification(req, 'Successfully nutted!');
             } else {
-                helpers.addNotification(req, 'Something went wrong when submitting your nut :<');
+                helpers.addNotification(
+                    req,
+                    'Something went wrong when submitting your nut :<'
+                );
             }
 
             res.redirect(req.headers.referer || '/');
-        } catch (err){
+        } catch (err) {
             console.log(err);
             res.status(500).redirect(req.headers.referer || '/');
         }
     } else {
-        console.log('Attempted to nut without a session token', req.session.sessionToken);
+        console.log(
+            'Attempted to nut without a session token',
+            req.session.sessionToken
+        );
         res.status(401).redirect('/register');
     }
-}
+};
