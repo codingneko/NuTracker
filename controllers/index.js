@@ -6,11 +6,11 @@ module.exports = {
             user: require('./api/users/user'),
             register: require('./api/users/register'),
             login: require('./api/users/login'),
-            logout: require('./api/users/logout')
+            logout: require('./api/users/logout'),
         },
         nuts: {
-            create: require('./api/nuts/create')
-        }
+            create: require('./api/nuts/create'),
+        },
     },
     front: {
         index: require('./front/index'),
@@ -24,7 +24,7 @@ module.exports = {
             settings: require('./front/users/settings'),
             settingsSubmit: require('./front/users/settingsSubmit'),
             customNut: require('./front/users/customNut'),
-            customNutSubmit: require('./front/users/customNutSubmit')
-        }
-    }
-}
+            customNutSubmit: require('./front/users/customNutSubmit'),
+        },
+    },
+};

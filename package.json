@@ -1,24 +1,24 @@
 {
-  "name": "NuTracker",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "author": "CodingNeko",
-  "license": "GPL-3.0",
-  "dependencies": {
-    "@types/express-session": "^1.17.3",
-    "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "mongoose": "^5.11.11",
-    "node-sass": "^5.0.0",
-    "node-sass-middleware": "^0.11.0",
-    "pug": "^3.0.0"
-  }
+    "name": "NuTracker",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "author": "CodingNeko",
+    "license": "GPL-3.0",
+    "dependencies": {
+        "@types/express-session": "^1.17.3",
+        "axios": "^0.21.1",
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "mongoose": "^5.11.11",
+        "node-sass": "^5.0.0",
+        "node-sass-middleware": "^0.11.0",
+        "pug": "^3.0.0"
+    }
 }

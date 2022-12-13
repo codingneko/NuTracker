@@ -2,12 +2,12 @@
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     background-color: $primary-color;
-    background: linear-gradient(45deg, #DD4B75 0%, $primary-color);
+    background: linear-gradient(45deg, #dd4b75 0%, $primary-color);
     text-decoration: none;
     color: $white;
     box-shadow: 1px 2px 4px 1px rgba($primary-color, 0.4);
     transition: box-shadow 0.3s ease-in-out;
-    border:none;
+    border: none;
     cursor: pointer;
 
     &:hover {

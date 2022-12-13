@@ -7,12 +7,11 @@
 
 // Configuration
 
-@import "functions";
-@import "variables";
-@import "mixins";
-@import "utilities";
-
+@import 'functions';
+@import 'variables';
+@import 'mixins';
+@import 'utilities';
 
 // Utilities
 
-@import "utilities/api";
+@import 'utilities/api';

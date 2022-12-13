@@ -3,16 +3,16 @@ const mongoose = require('mongoose');
 const NutSchema = mongoose.Schema({
     userId: {
         type: String,
-        required: true
+        required: true,
     },
     observations: {
         type: String,
-        required: false
+        required: false,
     },
     date: {
         type: String,
-        default: Date.now
-    }
+        default: Date.now,
+    },
 });
 
 module.exports = mongoose.model('Nut', NutSchema);

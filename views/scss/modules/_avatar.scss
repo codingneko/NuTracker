@@ -6,9 +6,8 @@
     max-width: 15rem;
     margin: auto;
 
-
-    @include media-breakpoint-down (md) {
-        margin:auto;
+    @include media-breakpoint-down(md) {
+        margin: auto;
         margin-bottom: 2rem;
     }
 
@@ -20,7 +19,7 @@
     }
 }
 
-.leaderboard-avatar{
+.leaderboard-avatar {
     height: 1.3rem;
     width: 1.3rem;
     border-radius: 3rem;
