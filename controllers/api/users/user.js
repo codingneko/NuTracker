@@ -3,7 +3,7 @@ const UserHelper = require('../../dbHelpers/User');
 const Nut = require('../../../models/Nut');
 
 module.exports = async (req, res) => {
-    var nuts = await User.aggregate([
+    var user = await User.aggregate([
         {
             $match: {
                 username: req.params.user,
@@ -36,9 +36,10 @@ module.exports = async (req, res) => {
         },
     ]);
 
-    if (nuts !== null) {
-        nuts[0].rank = await UserHelper.getUserRank(nuts[0]);
-        res.json(nuts[0]);
+    if (user !== null) {
+        user[0].rank = await UserHelper.getUserRank(user[0]);
+        user[0].nuts.sort((a, b) => b.date - a.date);
+        res.json(user[0]);
     } else {
         res.status(404).json({
             status: 'User not found.',

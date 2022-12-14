@@ -22,4 +22,7 @@ body
                     span.info-tooltip(data-toggle="tooltip", data-placement="right", title="There is no way of seing this currently, but it will be implemented soon.") ?
                     textarea(rows=3, placeholder="A short description of your nut or any other thing you might want to remember... Leave empty if nothing.", name="observations").form-control#observations
                 .mb-3
+                    label(for="number").form-label Score
+                    input(type="number", name="score", max=10, min=0, required=true).form-control#score
+                .mb-3
                     input(type="submit" value="Submit").button

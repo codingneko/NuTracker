@@ -1,26 +1,64 @@
 mixin weekly-chart(nuts)
-    #weekly-chart
+    canvas#weekly-chart
+    script(src="https://cdn.jsdelivr.net/npm/chart.js") 
     script.
-            /* Add a basic data series with six labels and values */
-            var nuts = !{JSON.stringify(nuts)};
+        /* Add a basic data series with six labels and values */
+        var nuts = !{JSON.stringify(nuts)};
 
-            var data = {
+        const ctx = document.getElementById('weekly-chart');
+
+        var data = {
                 labels: ['6 days ago', '5 days ago', '4 days ago', '3 days ago', '2 days ago', '1 day ago', 'last 24h'],
-                series: [{
-                    data: [0, 0, 0, 0, 0, 0, 0]
-                }]
-            };
+                datasets: [
+                    {
+                        label: 'Nuts per day',
+                        data: [0, 0, 0, 0, 0, 0, 0],
+                        borderWidth: 3
+                    }, {
+                        label: 'Average nut score',
+                        data: [0, 0, 0, 0, 0, 0, 0],
+                        borderWidth: 3
+                    }
+                ]
+        }
 
-            var options = {
-                axisY: {
-                    onlyInteger: true
-                }
+        var nutsPerDay = [[], [], [], [], [], [], []];
+
+        nuts.forEach(nut => {
+            var daysPast = Math.floor((new Date().getTime() - nut.date) / (1000 * 3600 * 24));
+            if (daysPast <= 7) {
+                nutsPerDay[daysPast].push(nut);
             }
+        });
 
-            nuts.forEach(nut => {
-                var daysPast = Math.floor((new Date().getTime() - nut.date) / (1000 * 3600 * 24));
-                
-                data.series[0].data[(data.series[0].data.length-1)-daysPast]++;
-            });
+        nutsPerDay = nutsPerDay.reverse();
 
-            new Chartist.Line('#weekly-chart', data, options);
+        data.datasets[0].data = nutsPerDay.map(day => day.length);
+        data.datasets[1].data = nutsPerDay.map(day => {
+            if (day.length > 0) {
+                let totalScores = 0;
+                let daysWithScore = 0;
+                day.forEach(nut => {
+                    totalScores += nut.score || 0;
+                    if (typeof nut.score !== 'undefined') daysWithScore++;
+                });
+                return totalScores / daysWithScore;
+            } else {
+                return 0;
+            }
+        });
+
+        console.log(data.datasets[1].data);
+
+        new Chart(ctx, 
+            {
+                type: 'line',
+                data: data,
+                options: {
+                    scale: {
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+        });

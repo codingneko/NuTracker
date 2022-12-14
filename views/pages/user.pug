@@ -19,16 +19,64 @@ body
                         
             .row
                 .col-lg-2.mt-3
-                    +avatar(user.avatar)
-                    .general-nut-info.mt-3
-                        .grand-total
-                            i.bi.bi-nut-fill
-                            span.number #{user.nuts.length}
-                        .user-rank
-                            i.bi.bi-trophy-fill 
-                            span.number ##{user.rank}
+                    .card
+                        img(src=user.avatar).card-img-top
+                        .card-body 
+                            .card-text 
+                                .general-nut-info.mt-3
+                                    .item(title="Total times nutted")
+                                        span.item-info 
+                                            i.bi.bi-nut-fill
+                                            span Total
+                                        span.number #{user.nuts.length}
+                                    .item(title="User rank")
+                                        span.item-info 
+                                            i.bi.bi-trophy-fill
+                                            span Rank
+                                        span.number ##{user.rank}
+                                    .item(title="Average Nut Score (all time)")
+                                        span.item-info 
+                                            i.bi.bi-speedometer
+                                            span ANS
+                                        span.number #{averageNutScore}
                 .col-lg-10
                     .chart-container.mt-3
                         h4 Weekly chart
                         +weekly-chart(user.nuts)
+                .col-lg-12 
+                    .row.justify-content-end
+                        .col-lg-10 
+                            .table-container.d-none.d-md-block
+                                table.table.table-striped.unbordered-table.table-hover
+                                    thead
+                                        tr
+                                            th(scope='col') Observations
+                                            th(scope='col') Score
+                                            th(scope='col') Date
+                                    tbody
+                                        each nut in user.nuts
+                                            tr(style="transform: rotate(0);")
+                                                td #{nut.observations}
+                                                td #{nut.score}
+                                                td #{new Date(new Number(nut.date)).toUTCString()}
+                            .mobile-nut-container.mt-4.d-md-none
+                                each nut in user.nuts
+                                    .mobile-nut.mt-2
+                                        .card  
+                                            .card-body 
+                                                .card-text
+                                                    .row 
+                                                        .col-10 
+                                                            .nut-date #{new Date(new Number(nut.date)).toUTCString()}
+                                                        .col-2
+                                                            .nut-score 
+                                                                if(nut.score) 
+                                                                    i.bi.bi-speedometer 
+                                                                    span #{nut.score}
+                                                        .col-12 
+                                                            .nut-title #{nut.observations}
+
+
+                                 
+                                    
                         

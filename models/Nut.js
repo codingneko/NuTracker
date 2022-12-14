@@ -9,6 +9,10 @@ const NutSchema = mongoose.Schema({
         type: String,
         required: false,
     },
+    score: {
+        type: Number,
+        required: false,
+    },
     date: {
         type: String,
         default: Date.now,
