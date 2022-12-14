@@ -9,7 +9,8 @@ a {
 body {
     background-color: $white;
     background: linear-gradient(45deg, $white 0%, $secondary-color);
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .main-container {
@@ -21,6 +22,10 @@ body {
     border-radius: 0.4rem;
     margin-top: 2rem;
     overflow: hidden;
+
+    @include media-breakpoint-down(md) {
+        display: none;
+    }
 
     .unbordered-table {
         margin-bottom: 0;
