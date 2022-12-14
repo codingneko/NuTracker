@@ -11,8 +11,8 @@ module.exports = async (req, res) => {
     );
 
     user.data.nuts.forEach((nut) => {
-        averageNutScore += nut.score || 0;
-        if (typeof nut.score !== 'undefined') nutsWithScore++;
+        averageNutScore += Number(nut.score) || 0;
+        if (nut.score) nutsWithScore++;
     });
 
     averageNutScore /= nutsWithScore;
