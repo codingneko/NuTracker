@@ -11,6 +11,7 @@ body {
     background: linear-gradient(45deg, $white 0%, $secondary-color);
     background-repeat: no-repeat;
     background-attachment: fixed;
+    padding-bottom: 4rem;
 }
 
 .main-container {
@@ -22,10 +23,6 @@ body {
     border-radius: 0.4rem;
     margin-top: 2rem;
     overflow: hidden;
-
-    @include media-breakpoint-down(md) {
-        display: none;
-    }
 
     .unbordered-table {
         margin-bottom: 0;
@@ -105,35 +102,17 @@ body {
 }
 
 .general-nut-info {
-    max-width: 70%;
-    margin: auto;
-
-    @include media-breakpoint-down(md) {
-        max-width: 40%;
-        margin-bottom: 2rem;
-    }
-
-    .number {
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-
-    .grand-total {
-        display: flex;
-        justify-content: space-between;
-
-        i {
-            color: $primary-color;
-            font-size: 1.7rem;
+    .item {
+        .item-info {
+            i {
+                margin-right: 1rem;
+            }
         }
-    }
 
-    .user-rank {
-        display: flex;
-        justify-content: space-between;
-        i {
-            color: #ffd700;
-            font-size: 1.7rem;
+        .number {
+            float: right;
+            font-size: 1rem;
+            font-weight: 600;
         }
     }
 }

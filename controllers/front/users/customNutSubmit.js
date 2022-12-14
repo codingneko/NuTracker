@@ -15,7 +15,10 @@ module.exports = async (req, res) => {
                 data: {
                     sessionId: req.session.sessionToken,
                     observations: req.body.observations,
-                    date: new Date(req.body.date).getTime(),
+                    score: req.body.score,
+                    date:
+                        new Date(req.body.date).getTime() ||
+                        new Date(req.body.date).getTime(),
                 },
             }).catch((err) => {
                 helpers.addNotification(

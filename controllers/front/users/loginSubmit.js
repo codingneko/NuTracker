@@ -33,7 +33,6 @@ module.exports = async (req, res) => {
         );
         res.redirect('/');
     } else {
-        res.status('500');
-        res.redirect('/register');
+        res.status(500).redirect('/register');
     }
 };
