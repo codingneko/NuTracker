@@ -34,11 +34,12 @@ body
                                             i.bi.bi-trophy-fill
                                             span Rank
                                         span.number ##{user.rank}
-                                    .item(title="Average Nut Score (all time)")
-                                        span.item-info 
-                                            i.bi.bi-speedometer
-                                            span ANS
-                                        span.number #{averageNutScore}
+                                    if (averageNutScore)
+                                        .item(title="Average Nut Score (all time)")
+                                            span.item-info 
+                                                i.bi.bi-speedometer
+                                                span ANS
+                                            span.number #{averageNutScore}
                 .col-lg-10
                     .chart-container.mt-3
                         h4 Weekly chart
