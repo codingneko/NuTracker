@@ -2,7 +2,7 @@ include ./_mixins.pug
 
 head
     +head-imports
-    title=user.username
+    title #{user.username} - NuTracker
     meta(name="twitter:card" content="summary")
     meta(property="og:url" content="https://nutracker.fun")
     meta(property="og:image" content="https://nutracker.fun/assets/twitter.png")
@@ -38,8 +38,8 @@ body
                                         .item(title="Average Nut Score (all time)")
                                             span.item-info 
                                                 i.bi.bi-speedometer
-                                                span ANS
-                                            span.number #{averageNutScore.toFixed(2)}
+                                                span ANS™
+                                            span.number #{averageNutScore}
                 .col-lg-10
                     .chart-container.mt-3
                         h4 Weekly chart
@@ -52,7 +52,7 @@ body
                                     thead
                                         tr
                                             th(scope='col') Observations
-                                            th(scope='col') Score
+                                            th(scope='col') Nut Score™
                                             th(scope='col') Date
                                     tbody
                                         each nut in user.nuts
