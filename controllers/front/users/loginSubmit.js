@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
         }
     });
 
-    if (responseData.data.status === 'Success') {
+    if (responseData !== undefined && responseData.data.status === 'Success') {
         req.session.sessionToken = responseData.data.sessionToken;
         req.session.sessionTokenExpiry = responseData.data.expiry;
         helpers.addNotification(
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
             "You're now logged in as " + req.body.username + '.'
         );
         res.redirect('/');
-    } else {
+    } else if (responseData === undefined) {
         res.status(500).redirect('/register');
     }
 };
