@@ -1,0 +1,12 @@
+mixin slider-script
+    script.
+        let right = false;
+        slide();
+        setInterval(() => {
+            slide();
+        }, 6000)
+        function slide() {
+            if ($(".slider").width() < $(".slider-inner").width()) 
+                document.querySelector(".slider-inner").style.marginLeft = right ? 0 : $(".slider").width() - $(".slider-inner").width();
+            right = !right;
+        }

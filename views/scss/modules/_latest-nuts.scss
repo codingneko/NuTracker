@@ -1,0 +1,18 @@
+.latest-nut-container {
+    .latest-pill {
+        margin: 0.2rem;
+        height: 2rem;
+        display: inline-block;
+        padding-right: 1rem;
+
+        img {
+            border-radius: 100%;
+            height: 2rem;
+            width: 2rem;
+        }
+
+        .username {
+            margin-left: 0.5rem;
+        }
+    }
+}

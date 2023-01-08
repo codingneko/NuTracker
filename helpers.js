@@ -1,12 +1,13 @@
-const User = require('./models/User');
-const Session = require('./models/Session');
+const UserRepo = require('./controllers/repository/UserRepo');
 
 var helpers = {
     getLoggedInUser: async (req) => {
         if (typeof req.session.sessionToken !== 'undefined') {
             try {
-                var session = await Session.findById(req.session.sessionToken);
-                var user = await User.findById(session.userId);
+                var session = await SessionRepo.findById(
+                    req.session.sessionToken
+                );
+                var user = await UserRepo.findById(session.userId);
 
                 return user.username;
             } catch (err) {

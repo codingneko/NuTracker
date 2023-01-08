@@ -1,7 +1,9 @@
 include ./_mixins.pug
+include ./modules/index/top-users-table.pug
+include ./modules/index/latest-nuts.pug
 
 head
-    +head-imports 
+    +head-imports
     +global-scripts
     title NuTracker
     meta(name="twitter:card" content="summary")
@@ -19,34 +21,8 @@ body
                 NuTracker is a tracker for your 🌰s. You tell us when you cum, we save it 
                 in our shitty database in case you want to see how many times you 🌰ed a certain
                 day. We have beautiful charts so it's easy to keep track of your 🌰s.
+            .h4 Our latest nutters
+            +latest-nuts
+
             .h4 Top 20 most bonkable users:
-            .users
-                .table-container.d-none.d-md-block
-                    table.table.table-striped.unbordered-table.table-hover
-                        thead
-                            tr
-                                th(scope='col') 
-                                th(scope='col') #
-                                th(scope='col') Username
-                                th(scope='col') Total nuts
-                        tbody
-                            each user, number in users
-                                tr(style="transform: rotate(0);")
-                                    td(style="width: 1.3rem")
-                                        .leaderboard-avatar
-                                            img(src=user.avatar)
-                                    th(scope='row')
-                                        a(href="/user/"+user.username).stretched-link. 
-                                            #{number+1}
-                                    td #{user.username}
-                                    td #{user.nutCount}
-                .mobile-users-container.d-flex.d-md-none
-                    each user, number in users
-                        .card.mt-2.mb-2
-                            .card-img-top
-                                img(src=user.avatar)
-                            .card-body
-                                h5 #{user.username}
-                                p Rank: ##{number+1}
-                                p Nut count: #{user.nutCount}
-                                a(href="/user/"+user.username).stretched-link
+            +top-users-table(20)
