@@ -1,0 +1,10 @@
+include ../slider-script.pug
+
+mixin latest-nuts
+    .latest-nut-container.slider
+        .slider-inner
+            each user in latestNutters
+                span.rounded-pill.bg-light.latest-pill.slide
+                    img(src=user.avatar)
+                    span.username #{user.username}
+            +slider-script

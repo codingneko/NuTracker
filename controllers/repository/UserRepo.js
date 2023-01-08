@@ -161,6 +161,66 @@ var UserRepo = {
 
         return users;
     },
+    getUsersSortByLatestNut: async (limit) => {
+        return (users = await User.aggregate([
+            {
+                $project: {
+                    username: 1,
+                    avatar: 1,
+                    _id: {
+                        $toString: '$_id',
+                    },
+                },
+            },
+            {
+                $lookup: {
+                    from: 'nuts',
+                    localField: '_id',
+                    foreignField: 'userId',
+                    as: 'nuts',
+                },
+            },
+            {
+                $unwind: {
+                    path: '$nuts',
+                },
+            },
+            {
+                $project: {
+                    username: 1,
+                    avatar: 1,
+                    lastNutDate: '$nuts.date',
+                },
+            },
+            {
+                $sort: {
+                    lastNutDate: -1,
+                },
+            },
+            {
+                $group: {
+                    _id: '$_id',
+                    username: {
+                        $first: '$username',
+                    },
+                    avatar: {
+                        $first: '$avatar',
+                    },
+                    lastNutDate: {
+                        $first: '$lastNutDate',
+                    },
+                },
+            },
+            {
+                $sort: {
+                    lastNutDate: -1,
+                },
+            },
+            {
+                $limit: limit,
+            },
+        ]));
+    },
 };
 
 module.exports = UserRepo;
