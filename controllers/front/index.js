@@ -1,6 +1,5 @@
 var helpers = require('../../helpers');
 const UserRepo = require('../repository/UserRepo');
-const NutRepo = require('../repository/NutRepo');
 
 module.exports = async (req, res) => {
     var loggedInUser = await helpers.getLoggedInUser(req);
