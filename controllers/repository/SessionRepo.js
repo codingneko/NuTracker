@@ -1,4 +1,4 @@
-const Session = require('../../models/User');
+const Session = require('../../models/Session');
 
 var SessionRepo = {
     findById: Session.findById,
