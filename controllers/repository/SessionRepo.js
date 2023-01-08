@@ -1,7 +1,9 @@
-const Session = require('../../models/User');
+const Session = require('../../models/Session');
 
 var SessionRepo = {
-    findById: Session.findById,
+    findById: async (id) => {
+        return Session.findById(id);
+    },
 };
 
 module.exports = SessionRepo;

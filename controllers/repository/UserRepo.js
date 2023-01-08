@@ -1,7 +1,9 @@
 const User = require('../../models/User');
 
 var UserRepo = {
-    findById: User.findById,
+    findById: async (pUID) => {
+        return User.findById(pUID);
+    },
     getUserRank: async (pUser) => {
         var user = await User.aggregate([
             {

@@ -1,4 +1,5 @@
 const UserRepo = require('./controllers/repository/UserRepo');
+const SessionRepo = require('./controllers/repository/SessionRepo');
 
 var helpers = {
     getLoggedInUser: async (req) => {
