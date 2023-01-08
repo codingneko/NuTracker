@@ -1,7 +1,7 @@
 const Session = require('../../models/User');
 
-var NutRepo = {
+var SessionRepo = {
     findById: Session.findById,
 };
 
-module.exports = NutRepo;
+module.exports = SessionRepo;
