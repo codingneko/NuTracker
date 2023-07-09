@@ -1,0 +1,30 @@
+nav {
+    width: 100%;
+    background-color: #161616;
+    margin-top: 0;
+    position: relative;
+    display: block;
+    border-bottom: #00AAFF 2px solid;
+
+    ul {
+        margin: auto;
+        padding: 1rem 0rem;
+        width: 90%;
+        display: flex;
+
+        li {
+            a {
+                text-decoration: none;
+                color: #161616;
+                background: rgb(0,255,252);
+                background: linear-gradient(90deg, rgba(0,255,252,1) 35%, rgba(0,255,154,1) 100%);
+                padding: 0.5rem 1rem;
+                border-radius: 1.5rem;
+
+                &:hover {
+                    background: linear-gradient(90deg, rgba(0,255,154,1) 15%, rgba(0,255,252,1) 100%);
+                }
+            }
+        }
+    }
+}

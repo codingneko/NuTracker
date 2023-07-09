@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './typeorm/user.entity';
-import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { JwtModule } from '@nestjs/jwt';
+import { constants } from './constants';
 
 @Module({
     imports: [
@@ -16,8 +18,13 @@ import { AuthModule } from './auth/auth.module';
             synchronize: true,
             entities: [User],
         }),
-        UserModule,
+        JwtModule.register({
+            global: true,
+            secret: constants.jwt_token,
+            signOptions: { expiresIn: '60s' },
+        }),
         AuthModule,
+        UserModule
     ],
     controllers: [],
     providers: [],

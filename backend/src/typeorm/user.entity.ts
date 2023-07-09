@@ -11,9 +11,9 @@ export class User {
     @Column()
     password: string;
 
-    @Column()
+    @Column({nullable: true})
     email?: string;
 
-    @Column()
-    avatar: string;
+    @Column({nullable: true})
+    avatar?: string;
 }
