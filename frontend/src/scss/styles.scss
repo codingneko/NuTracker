@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
+@import "variables";
+@import "forms";
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: $app-background-color;
+    color: $app-text-color;
+    font-family: var(--font-family);
+
+    app-root {
+        min-height: 100vh;
+    }
+}
+
+i.pi {
+    font-size: 0.8rem;
+}

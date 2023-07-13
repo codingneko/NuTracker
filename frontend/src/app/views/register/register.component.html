@@ -1,5 +1,8 @@
-<form (ngSubmit)="onLogin()" class="flex flex-column max-w-30rem mt-4 m-auto">
-    <h2>Login to NuTracker</h2>
+<form
+    (ngSubmit)="onRegister()"
+    class="flex flex-column max-w-30rem mt-4 m-auto"
+>
+    <h2>Register on NuTracker</h2>
 
     <div class="p-inputgroup max-w-30rem">
         <span class="p-inputgroup-addon">
@@ -8,9 +11,24 @@
         <input
             pInputText
             type="text"
-            [(ngModel)]="loginRequest.username"
+            [(ngModel)]="registerRequest.username"
             name="username"
             placeholder="username"
+            [required]="true"
+        />
+    </div>
+
+    <div class="p-inputgroup max-w-30rem mt-2">
+        <span class="p-inputgroup-addon">
+            <i class="pi pi-envelope"></i>
+        </span>
+        <input
+            pInputText
+            type="email"
+            [(ngModel)]="registerRequest.email"
+            name="email"
+            placeholder="email"
+            [required]="false"
         />
     </div>
 
@@ -21,10 +39,11 @@
         <input
             pPassword
             type="password"
-            [(ngModel)]="loginRequest.password"
+            [(ngModel)]="registerRequest.password"
             name="password"
             placeholder="password"
             [feedback]="false"
+            [required]="true"
         />
     </div>
 

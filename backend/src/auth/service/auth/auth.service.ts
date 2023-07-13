@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Post, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { LoginDTO } from 'src/auth/dto/LoginDTO.class';
@@ -12,16 +12,17 @@ import { constants } from 'src/constants';
 export class AuthService {
     constructor(
         @InjectRepository(User) private userRepository: Repository<User>,
-        private jwtService: JwtService
-    ){}
+        private jwtService: JwtService,
+    ) {}
 
+    @Post('login')
     async login(loginDTO: LoginDTO): Promise<LoginResponse> {
         // TODO: Check if the user exists, generate a token for it and return it.
         let user: User = await this.userRepository.findOneBy({
-            username: loginDTO.username
+            username: loginDTO.username,
         });
 
-        if (!bcrypt.compare(loginDTO.password, user.password)) {
+        if (!(await bcrypt.compare(loginDTO.password, user.password))) {
             throw new UnauthorizedException();
         }
 
@@ -29,8 +30,8 @@ export class AuthService {
 
         return {
             accessToken: this.jwtService.sign(payload, {
-                secret: constants.jwt_token
-            })
+                secret: constants.jwtToken,
+            }),
         };
     }
 }
