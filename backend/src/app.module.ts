@@ -20,7 +20,7 @@ import { constants } from './constants';
         }),
         JwtModule.register({
             global: true,
-            secret: constants.jwtToken,
+            secret: constants.jwt_token,
             signOptions: { expiresIn: '60s' },
         }),
         AuthModule,
