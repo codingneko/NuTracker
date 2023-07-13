@@ -1,4 +1,4 @@
-import { Controller, Body, Get, Post } from '@nestjs/common';
+import { Controller, Body, Get, Post, BadRequestException } from '@nestjs/common';
 import { User } from 'src/typeorm/user.entity';
 import { CreateUserDTO } from 'src/user/dto/CreateUser.dto';
 import { UserService } from 'src/user/service/user/user.service';

@@ -10,22 +10,26 @@
             type="text"
             [(ngModel)]="loginRequest.username"
             name="username"
-            placeholder="username"
+            placeholder="Username"
         />
     </div>
 
     <div class="p-inputgroup max-w-30rem mt-2">
         <span class="p-inputgroup-addon">
-            <i class="pi pi-user"></i>
+            <i class="pi pi-key"></i>
         </span>
         <input
             pPassword
             type="password"
             [(ngModel)]="loginRequest.password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             [feedback]="false"
         />
+    </div>
+    <div class="p-inputgroup max-w-30rem mt-2">
+        <p-checkbox [(ngModel)]="keepLoggedIn" [binary]="true" name="keepLoggedIn"></p-checkbox>
+        <label for="keepLoggedIn" class="ml-2">Keep me logged in for 3 months</label>
     </div>
 
     <p-button label="Submit" class="mt-4 mb-6" type="submit"></p-button>

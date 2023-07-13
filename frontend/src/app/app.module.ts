@@ -13,6 +13,9 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageService } from "primeng/api";
 
 @NgModule({
     declarations: [
@@ -32,8 +35,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         CheckboxModule,
         ButtonModule,
         PasswordModule,
+        ToastModule,
+        MessagesModule
     ],
-    providers: [],
+    providers: [MessageService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

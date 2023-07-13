@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LoginResponse } from '../models/response/LoginResponse.interface';
 import { RegisterResponse } from '../models/response/RegisterResponse.interface';
 import { RegisterRequest } from '../models/request/RegisterRequest.interface';
 import { LoginRequest } from '../models/request/LoginRequest.interface';
-import { Constants } from '../utils/constants';
+import { Constants } from '../utils/Constants';
+import UserSession from '../models/user-session.interface';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
+    private userSession: Observable<UserSession> = new Observable<UserSession>();
+
     constructor(private httpClient: HttpClient) {}
 
     login(loginRequest: LoginRequest): Observable<LoginResponse> {
@@ -25,5 +28,13 @@ export class AuthService {
             Constants.base_url + Constants.base_auth_url + '/register',
             registerRequest
         );
+    }
+
+    getSession(): Observable<UserSession> {
+        return this.userSession;
+    }
+
+    setSession(userSession: UserSession): void {
+        this.userSession = of(userSession);
     }
 }

@@ -5,10 +5,10 @@ export class User {
     @PrimaryGeneratedColumn({ type: 'bigint' })
     id: number;
 
-    @Column({ unique: true })
+    @Column({ unique: true, nullable: false })
     username: string;
 
-    @Column()
+    @Column({nullable: false})
     password: string;
 
     @Column({nullable: true})
