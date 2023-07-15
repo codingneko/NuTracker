@@ -1,0 +1,18 @@
+<div class="grid">
+    <div class="col-12">
+        <h2>User settings</h2>
+    </div>
+    <div class="sm:col-12 md:col-6">
+
+    </div>
+    <div class="sm:col-12 md:col-6">
+        <h3>Delete Account</h3>
+        <form (ngSubmit)="deleteAccount()" [formGroup]="accountDeletionForm">
+            <div class="p-input-group mb-3">
+                <p-checkbox formControlName="accountDeletionCheckbox" [binary]="true" inputId="accountDeletionCheckbox" name="accountDeletionCheckbox"></p-checkbox>
+                <label for="accountDeletionCheckbox" class="ml-2">I understand this will PERMANENTLY DELETE MY ACCOUNT</label>
+            </div>
+            <p-button label="DELETE ACCOUNT" styleClass="p-button-danger" type="submit"></p-button>
+        </form>
+    </div>
+</div>

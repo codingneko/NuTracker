@@ -1,14 +1,16 @@
-import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/typeorm/user.entity';
-import { QueryFailedError, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDTO } from 'src/user/dto/CreateUser.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(User) private userRepository: Repository<User>,
+        private jwtService: JwtService
     ) {}
 
     getUsers(): Promise<User[]> {
@@ -34,5 +36,10 @@ export class UserService {
             this.userRepository.create(createUserDTO),
         );
         
+    }
+
+    async deleteUser(userId: number): Promise<boolean> {
+        let deletionResult = await this.userRepository.delete(userId);
+        return deletionResult.affected == 1;
     }
 }

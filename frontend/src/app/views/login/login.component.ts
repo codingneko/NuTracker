@@ -65,6 +65,16 @@ export class LoginComponent {
                         detail: message
                     });
                 }
+
+                if (response.status == 401) {
+                    this.messageService.add({
+                        key: 'br',
+                        severity: 'error',
+                        summary: 'Wrong credentials',
+                        sticky: true,
+                        detail: 'Please check your username and password.'
+                    });
+                }
             }
         });
     }

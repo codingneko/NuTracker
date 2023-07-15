@@ -22,11 +22,11 @@ export class AuthService {
             username: loginDTO.username,
         });
 
-        if (!(await bcrypt.compare(loginDTO.password, user.password))) {
+        if (user == null || !(await bcrypt.compare(loginDTO.password, user.password))) {
             throw new UnauthorizedException();
         }
 
-        const payload = { sub: user.id, username: user.username };
+        const payload = { userId: user.id, username: user.username };
 
         return {
             accessToken: this.jwtService.sign(payload, {

@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageService } from "primeng/api";
+import { UserSettingsComponent } from './views/user-settings/user-settings.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { MessageService } from "primeng/api";
         NavbarMobileComponent,
         LoginComponent,
         RegisterComponent,
+        UserSettingsComponent,
     ],
     imports: [
         BrowserModule,
@@ -36,7 +38,8 @@ import { MessageService } from "primeng/api";
         ButtonModule,
         PasswordModule,
         ToastModule,
-        MessagesModule
+        MessagesModule,
+        ReactiveFormsModule
     ],
     providers: [MessageService],
     bootstrap: [AppComponent],
