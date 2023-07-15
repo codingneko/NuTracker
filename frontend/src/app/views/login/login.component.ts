@@ -36,10 +36,7 @@ export class LoginComponent {
                     this.cookieService.set("JSESSIONID", loginResponse.accessToken);
                 }
 
-                this.authService.setSession({
-                    jwtToken: loginResponse.accessToken,
-                    username: jwtInfo.username
-                });
+                this.authService.setSession(this.cookieService.get('JSESSIONID'));
 
                 this.router.navigateByUrl('/');
 

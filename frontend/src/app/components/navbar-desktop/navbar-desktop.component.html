@@ -2,22 +2,24 @@
     <div class="top-navigation">
         <div class="top-nav-inner">
             <div class="left">
-                <h1 class="site-title">NuTracker</h1>
+                <a routerLink="/">
+                    <h1 class="site-title">NuTracker</h1>
+                </a>
             </div>
             <div class="right">
-                <a *ngIf="loggedIn" routerLink="/login" class="">
-                    Global stats
-                    <i class="bi bi-graph-up"></i>
+                <a *ngIf="loggedIn" routerLink="/user-settings">
+                    User settings
+                    <i class="pi pi-cog"></i>
                 </a>
-                <a *ngIf="loggedIn" routerLink="/login" class="">
-                    Timeline
-                    <i class="bi bi-card-text"></i>
+                <a *ngIf="loggedIn" routerLink="/" (click)="logOut()">
+                    Log out
+                    <i class="pi pi-sign-out"></i>
                 </a>
-                <a *ngIf="!loggedIn" routerLink="/login" class="">
+                <a *ngIf="!loggedIn" routerLink="/login">
                     Login
                     <i class="pi pi-arrow-circle-right"></i>
                 </a>
-                <a *ngIf="!loggedIn" routerLink="/register" class="">
+                <a *ngIf="!loggedIn" routerLink="/register">
                     Register
                     <i class="pi pi-pencil"></i>
                 </a>

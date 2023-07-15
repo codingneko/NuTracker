@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginResponse } from '../models/response/LoginResponse.interface';
 import { RegisterResponse } from '../models/response/RegisterResponse.interface';
 import { RegisterRequest } from '../models/request/RegisterRequest.interface';
 import { LoginRequest } from '../models/request/LoginRequest.interface';
 import { Constants } from '../utils/Constants';
-import UserSession from '../models/user-session.interface';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    private userSession: Observable<UserSession> = new Observable<UserSession>();
+    private sessionId: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient, private cookieService: CookieService) {}
 
     login(loginRequest: LoginRequest): Observable<LoginResponse> {
         return this.httpClient.post<LoginResponse>(
             Constants.base_url + Constants.base_auth_url + '/login',
             loginRequest
         );
+    }
+
+    logOut() {
+        this.sessionId.next('');
+        this.cookieService.delete('JSESSIONID');
     }
 
     register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
@@ -30,11 +35,11 @@ export class AuthService {
         );
     }
 
-    getSession(): Observable<UserSession> {
-        return this.userSession;
+    getSession(): Observable<string> {
+        return this.sessionId.asObservable();
     }
 
-    setSession(userSession: UserSession): void {
-        this.userSession = of(userSession);
+    setSession(sessionId: string): void {
+        this.sessionId.next(sessionId);
     }
 }

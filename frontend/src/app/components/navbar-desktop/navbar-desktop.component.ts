@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,16 +10,23 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarDesktopComponent implements OnInit{
     loggedIn: boolean = false;
 
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, private cookieService: CookieService) {}
 
     ngOnInit(): void {
+        this.authService.setSession(this.cookieService.get("JSESSIONID"));
         this.authService.getSession().subscribe({
-            next: session => {
-                console.log(session);
-                if (session.jwtToken) {
+            next: sessionId => {
+                console.log(sessionId);
+                if(sessionId) {
                     this.loggedIn = true;
+                } else {
+                    this.loggedIn = false;
                 }
             }
-        })
+        });
+    }
+
+    logOut() {
+        this.authService.logOut();
     }
 }
