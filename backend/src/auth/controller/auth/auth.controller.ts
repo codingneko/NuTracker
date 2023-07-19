@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Res } from '@nestjs/common';
+import { Controller, Post, Body, Res, Req } from '@nestjs/common';
 import { LoginDTO } from 'src/auth/dto/LoginDTO.class';
 import { AuthService } from 'src/auth/service/auth/auth.service';
 import { Response } from 'express';
@@ -13,8 +13,15 @@ export class AuthController {
     ) {}
 
     @Post('login')
-    async login(@Body() loginDTO: LoginDTO) {
-        return await this.authService.login(loginDTO);
+    async login(@Body() loginDTO: LoginDTO, @Res() response: Response) {
+        let {accessToken} = await this.authService.login(loginDTO);
+        response.cookie('JSESSIONID', accessToken, {
+            secure: false,
+            sameSite: 'lax',
+            expires: new Date(Date.now() + 1000 * 60 * 24 * 31)
+        }).send({
+            accessToken
+        });
     }
 
     @Post('register')

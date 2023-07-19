@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDTO } from 'src/user/dto/CreateUser.dto';
 import { JwtService } from '@nestjs/jwt';
+import PrivateUserInfo from 'src/user/mode/PrivateUserInfo.interface';
 
 @Injectable()
 export class UserService {
@@ -15,6 +16,12 @@ export class UserService {
 
     getUsers(): Promise<User[]> {
         return this.userRepository.find();
+    }
+
+    getUser(userId: number): Promise<User> {
+        return this.userRepository.findOneBy({
+            id: userId
+        });
     }
 
     async createUser(createUserDTO: CreateUserDTO): Promise<User> {
@@ -41,5 +48,11 @@ export class UserService {
     async deleteUser(userId: number): Promise<boolean> {
         let deletionResult = await this.userRepository.delete(userId);
         return deletionResult.affected == 1;
+    }
+
+    async uploadAvatar(avatar: Express.Multer.File, userId: number): Promise<string> {
+        console.log(avatar, userId);
+
+        return '';
     }
 }

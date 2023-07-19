@@ -18,7 +18,7 @@ export class AuthService {
 
     login(loginRequest: LoginRequest): Observable<LoginResponse> {
         return this.httpClient.post<LoginResponse>(
-            Constants.base_url + Constants.base_auth_url + '/login',
+            Constants.base_auth_url + '/login',
             loginRequest
         );
     }
@@ -30,16 +30,16 @@ export class AuthService {
 
     register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
         return this.httpClient.post<RegisterResponse>(
-            Constants.base_url + Constants.base_auth_url + '/register',
+            Constants.base_auth_url + '/register',
             registerRequest
         );
     }
 
     getSession(): Observable<string> {
-        return this.sessionId.asObservable();
-    }
+        if (!this.sessionId.getValue()) {
+            this.sessionId.next(this.cookieService.get('JSESSIONID'));
+        }
 
-    setSession(sessionId: string): void {
-        this.sessionId.next(sessionId);
+        return this.sessionId.asObservable();
     }
 }

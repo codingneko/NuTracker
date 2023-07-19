@@ -68,7 +68,8 @@
                             "browserTarget": "nutracker-spa:build:production"
                         },
                         "development": {
-                            "browserTarget": "nutracker-spa:build:development"
+                            "browserTarget": "nutracker-spa:build:development",
+                            "proxyConfig": "proxy.conf.json"
                         }
                     },
                     "defaultConfiguration": "development"

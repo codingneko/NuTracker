@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FileUploadEvent, FileUploadHandlerEvent, FileUploadModule, UploadEvent } from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import jwtDecode from 'jwt-decode';
+import { Constants } from 'src/app/utils/Constants';
+import User from 'src/app/models/entity/user.interface';
 
 
 @Component({
@@ -13,6 +16,9 @@ import jwtDecode from 'jwt-decode';
 })
 export class UserSettingsComponent implements OnInit {
     jwt: string = '';
+    currentUser: User = new User();
+    avatarUploadEndpoint: string = Constants.base_user_url + '/' + this.currentUser.getUserId + '/avatar';
+
 
     accountDeletionForm: FormGroup = this.formBuilder.group({
         accountDeletionCheckbox: ['', Validators.required]
@@ -28,6 +34,7 @@ export class UserSettingsComponent implements OnInit {
         this.authService.getSession().subscribe({
             next: jwt => {
                 this.jwt = jwt;
+                this.userService.getUser(this.jwt).subscribe
             }
         })
     }
@@ -46,7 +53,10 @@ export class UserSettingsComponent implements OnInit {
 
         let jwtInfo: any = jwtDecode(this.jwt);
 
-        this.userService.deleteUser({userId: jwtInfo.userId}, this.jwt).subscribe({
+        this.userService.deleteUser({
+            userId: jwtInfo.userId, 
+            jwt: this.jwt
+        }).subscribe({
             next: response => {
                 if (response) {
                     this.messageService.add({

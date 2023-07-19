@@ -3,7 +3,9 @@
         <h2>User settings</h2>
     </div>
     <div class="sm:col-12 md:col-6">
-
+        <h3>Change avatar</h3>
+        <p-fileUpload name="avatar" mode="basic" name="file" chooseLabel="Upload new Avatar" accept="image/*" [url]="avatarUploadEndpoint"></p-fileUpload>
+        <img src="" alt="">
     </div>
     <div class="sm:col-12 md:col-6">
         <h3>Delete Account</h3>

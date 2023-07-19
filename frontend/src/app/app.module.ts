@@ -17,6 +17,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageService } from "primeng/api";
 import { UserSettingsComponent } from './views/user-settings/user-settings.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { UserSettingsComponent } from './views/user-settings/user-settings.compo
         PasswordModule,
         ToastModule,
         MessagesModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FileUploadModule
     ],
     providers: [MessageService],
     bootstrap: [AppComponent],

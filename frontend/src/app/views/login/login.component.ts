@@ -21,8 +21,7 @@ export class LoginComponent {
 
     constructor(
         private authService: AuthService, 
-        private messageService: MessageService, 
-        private cookieService: CookieService,
+        private messageService: MessageService,
         private router: Router) {}
 
     onLogin() {
@@ -30,15 +29,8 @@ export class LoginComponent {
             next: (loginResponse) => {
                 let jwtInfo: any = jwt_decode(loginResponse.accessToken);
 
-                if (this.keepLoggedIn) {
-                    this.cookieService.set("JSESSIONID", loginResponse.accessToken, 31*3);
-                } else {
-                    this.cookieService.set("JSESSIONID", loginResponse.accessToken);
-                }
-
-                this.authService.setSession(this.cookieService.get('JSESSIONID'));
-
                 this.router.navigateByUrl('/');
+                this.authService.getSession();
 
                 this.messageService.add({
                     key: 'br',

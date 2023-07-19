@@ -10,18 +10,14 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarDesktopComponent implements OnInit{
     loggedIn: boolean = false;
 
-    constructor(private authService: AuthService, private cookieService: CookieService) {}
+    constructor(private authService: AuthService) {}
 
     ngOnInit(): void {
-        this.authService.setSession(this.cookieService.get("JSESSIONID"));
         this.authService.getSession().subscribe({
             next: sessionId => {
                 console.log(sessionId);
-                if(sessionId) {
-                    this.loggedIn = true;
-                } else {
-                    this.loggedIn = false;
-                }
+                // This is garbage. It's times like this I wish I had Java.String.isEmpty()
+                this.loggedIn = !(!sessionId?.length);
             }
         });
     }
