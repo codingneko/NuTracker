@@ -1,0 +1,30 @@
+<div class="navbar">
+    <div class="top-navigation">
+        <div class="top-nav-inner">
+            <div class="left">
+                <a routerLink="/">
+                    <h1 class="site-title">NuTracker</h1>
+                </a>
+            </div>
+            <div class="right">
+                <a *ngIf="loggedIn" routerLink="/user-settings">
+                    User settings
+                    <i class="pi pi-cog"></i>
+                </a>
+                <a *ngIf="loggedIn" routerLink="/" (click)="logOut()">
+                    Log out
+                    <i class="pi pi-sign-out"></i>
+                </a>
+                <a *ngIf="!loggedIn" routerLink="/login">
+                    Login
+                    <i class="pi pi-arrow-circle-right"></i>
+                </a>
+                <a *ngIf="!loggedIn" routerLink="/register">
+                    Register
+                    <i class="pi pi-pencil"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="left-navigation"></div>
+</div>

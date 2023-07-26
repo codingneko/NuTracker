@@ -1,5 +1,5 @@
 export const constants = {
-    jwtToken: "",
+    jwt_token: "",
     db_user: "",
     db_password: "",
     db_name: ""

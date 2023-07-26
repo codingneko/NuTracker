@@ -1,1 +1,36 @@
-<p>login works!</p>
+<form (ngSubmit)="onLogin()" class="flex flex-column max-w-30rem mt-4 m-auto">
+    <h2>Login to NuTracker</h2>
+
+    <div class="p-inputgroup max-w-30rem">
+        <span class="p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+        </span>
+        <input
+            pInputText
+            type="text"
+            [(ngModel)]="loginRequest.username"
+            name="username"
+            placeholder="Username"
+        />
+    </div>
+
+    <div class="p-inputgroup max-w-30rem mt-2">
+        <span class="p-inputgroup-addon">
+            <i class="pi pi-key"></i>
+        </span>
+        <input
+            pPassword
+            type="password"
+            [(ngModel)]="loginRequest.password"
+            name="password"
+            placeholder="Password"
+            [feedback]="false"
+        />
+    </div>
+    <div class="p-inputgroup max-w-30rem mt-2">
+        <p-checkbox [(ngModel)]="keepLoggedIn" [binary]="true" inputId="keepLoggedIn" name="keepLoggedIn"></p-checkbox>
+        <label for="keepLoggedIn" class="ml-2">Keep me logged in for 3 months</label>
+    </div>
+
+    <p-button label="Submit" class="mt-4 mb-6" type="submit"></p-button>
+</form>

@@ -1,0 +1,63 @@
+@import "variables";
+
+.navbar {
+    .top-navigation {
+        height: 3rem;
+        width: 100%;
+        background-color: $app-navigation-color;
+        position: fixed;
+        top: 0rem;
+        z-index: 2;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 3rem;
+            left: 3rem;
+            width: 6rem;
+            height: 6rem;
+            border-top-left-radius: 50%;
+            box-shadow: 0 -3rem 0 0 $app-navigation-color; /* This is where the magic happens! */
+            z-index: -1;
+        }
+
+        .top-nav-inner {
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-left: 6rem;
+            padding-right: 6rem;
+            padding-top: 0.75rem;
+
+            .site-title {
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin-top: 0rem;
+                line-height: 1.1rem;
+                color: $app-primary-color;
+            }
+
+            .right {
+                a {
+                    padding: 0rem 1rem;
+                }
+            }
+        }
+    }
+
+    .left-navigation {
+        position: fixed;
+        top: 0;
+        width: 3rem;
+        height: 100%;
+        background-color: $app-navigation-color;
+        top: 0rem;
+        z-index: 1;
+    }
+
+    a {
+        color: $app-text-color;
+        text-decoration: none;
+    }
+}

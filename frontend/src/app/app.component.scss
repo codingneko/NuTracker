@@ -1,0 +1,9 @@
+@import "variables";
+
+.container {
+    background-color: $app-main-container-color;
+    border-radius: 1rem;
+    margin: auto;
+    max-width: 90%;
+    padding: 1rem 1.5rem;
+}
