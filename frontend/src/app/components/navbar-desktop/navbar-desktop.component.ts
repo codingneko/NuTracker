@@ -7,22 +7,34 @@ import { AuthService } from 'src/app/services/auth.service';
     templateUrl: './navbar-desktop.component.html',
     styleUrls: ['./navbar-desktop.component.scss'],
 })
-export class NavbarDesktopComponent implements OnInit{
+export class NavbarDesktopComponent implements OnInit {
     loggedIn: boolean = false;
+    newNutDialogShown: boolean = false;
 
     constructor(private authService: AuthService) {}
 
     ngOnInit(): void {
         this.authService.getSession().subscribe({
-            next: sessionId => {
+            next: (sessionId) => {
                 console.log(sessionId);
                 // This is garbage. It's times like this I wish I had Java.String.isEmpty()
-                this.loggedIn = !(!sessionId?.length);
-            }
+                this.loggedIn = !!sessionId?.length;
+            },
         });
     }
 
     logOut() {
         this.authService.logOut();
     }
+
+    onShowNewNutDialog(event: Event) {
+        event.preventDefault();
+        this.newNutDialogShown = true;
+    }
+
+    onCloseNewNutDialog() {
+        this.newNutDialogShown = false;
+    }
+
+    onNewNut() {}
 }

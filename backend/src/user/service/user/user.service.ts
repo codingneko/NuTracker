@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/typeorm/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { CreateUserDTO } from 'src/user/dto/CreateUser.dto';
+import { CreateUserDTO } from 'src/user/dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import PrivateUserInfo from 'src/user/mode/PrivateUserInfo.interface';
 
@@ -11,7 +11,7 @@ import PrivateUserInfo from 'src/user/mode/PrivateUserInfo.interface';
 export class UserService {
     constructor(
         @InjectRepository(User) private userRepository: Repository<User>,
-        private jwtService: JwtService
+        private jwtService: JwtService,
     ) {}
 
     getUsers(): Promise<User[]> {
@@ -20,7 +20,7 @@ export class UserService {
 
     getUser(userId: number): Promise<User> {
         return this.userRepository.findOneBy({
-            id: userId
+            id: userId,
         });
     }
 
@@ -31,18 +31,19 @@ export class UserService {
             salt,
         );
 
-        if (await this.userRepository.countBy({
-            username: createUserDTO.username
-        }) > 0) {
+        if (
+            (await this.userRepository.countBy({
+                username: createUserDTO.username,
+            })) > 0
+        ) {
             throw new ConflictException({
-                message: 'Username is not available. Try a different one.'
+                message: 'Username is not available. Try a different one.',
             });
         }
-        
+
         return this.userRepository.save(
             this.userRepository.create(createUserDTO),
-        );
-        
+        )[0];
     }
 
     async deleteUser(userId: number): Promise<boolean> {
@@ -50,7 +51,10 @@ export class UserService {
         return deletionResult.affected == 1;
     }
 
-    async uploadAvatar(avatar: Express.Multer.File, userId: number): Promise<string> {
+    async uploadAvatar(
+        avatar: Express.Multer.File,
+        userId: number,
+    ): Promise<string> {
         console.log(avatar, userId);
 
         return '';

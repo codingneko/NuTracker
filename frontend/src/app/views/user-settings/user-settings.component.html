@@ -4,17 +4,43 @@
     </div>
     <div class="sm:col-12 md:col-6">
         <h3>Change avatar</h3>
-        <p-fileUpload name="avatar" mode="basic" name="file" chooseLabel="Upload new Avatar" accept="image/*" [url]="avatarUploadEndpoint"></p-fileUpload>
-        <img src="" alt="">
+        <p-fileUpload
+            name="avatar"
+            mode="basic"
+            name="file"
+            chooseLabel="Upload new Avatar"
+            accept="image/*"
+            [url]="avatarUploadEndpoint"
+        ></p-fileUpload>
+        <img src="" alt="" />
     </div>
     <div class="sm:col-12 md:col-6">
         <h3>Delete Account</h3>
         <form (ngSubmit)="deleteAccount()" [formGroup]="accountDeletionForm">
             <div class="p-input-group mb-3">
-                <p-checkbox formControlName="accountDeletionCheckbox" [binary]="true" inputId="accountDeletionCheckbox" name="accountDeletionCheckbox"></p-checkbox>
-                <label for="accountDeletionCheckbox" class="ml-2">I understand this will PERMANENTLY DELETE MY ACCOUNT</label>
+                <p>
+                    By clicking the following checkmark, you understand ALL OF
+                    YOUR DATA WILL BE GONE with immediate effect. No data will
+                    be kept on the server after deleting your account, and NO
+                    BACKUPS EXIST ON THE SERVER. Your account CAN NOT BE
+                    REINSTATED.
+                </p>
+                <p-checkbox
+                    formControlName="accountDeletionCheckbox"
+                    [binary]="true"
+                    inputId="accountDeletionCheckbox"
+                    name="accountDeletionCheckbox"
+                ></p-checkbox>
+                <label for="accountDeletionCheckbox" class="ml-2">
+                    I understand all of the above and wish to move forward with
+                    account deletion.
+                </label>
             </div>
-            <p-button label="DELETE ACCOUNT" styleClass="p-button-danger" type="submit"></p-button>
+            <p-button
+                label="DELETE ACCOUNT"
+                styleClass="p-button-danger"
+                type="submit"
+            ></p-button>
         </form>
     </div>
 </div>

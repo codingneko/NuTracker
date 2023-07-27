@@ -1,21 +1,21 @@
-import { 
-    Controller, 
-    Body, 
-    Get, 
-    Post, 
-    Delete, 
-    UseGuards, 
-    Param, 
-    UseInterceptors, 
+import {
+    Controller,
+    Body,
+    Get,
+    Post,
+    Delete,
+    UseGuards,
+    Param,
+    UseInterceptors,
     UploadedFile,
     ParseFilePipe,
     FileTypeValidator,
-    MaxFileSizeValidator
+    MaxFileSizeValidator,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from 'src/auth/service/auth/auth.guard';
-import { CreateUserDTO } from 'src/user/dto/CreateUser.dto';
-import { DeleteUserDTO } from 'src/user/dto/DeleteUser.dto';
+import { CreateUserDTO } from 'src/user/dto/create-user.dto';
+import { DeleteUserDTO } from 'src/user/dto/delete-user.dto';
 import { UserService } from 'src/user/service/user/user.service';
 
 @Controller('user')
@@ -55,12 +55,13 @@ export class UserController {
                         maxSize: 200000,
                     }),
                     new FileTypeValidator({
-                        fileType: 'image/*'
-                    })
-                ]
-            })
-        ) avatar: Express.Multer.File) {
-
+                        fileType: 'image/*',
+                    }),
+                ],
+            }),
+        )
+        avatar: Express.Multer.File,
+    ) {
         return this.userService.uploadAvatar(avatar, params.id);
     }
 }

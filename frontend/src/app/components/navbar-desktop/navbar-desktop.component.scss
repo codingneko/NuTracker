@@ -13,7 +13,7 @@
             content: "";
             position: absolute;
             top: 3rem;
-            left: 3rem;
+            left: 3.5rem;
             width: 6rem;
             height: 6rem;
             border-top-left-radius: 50%;
@@ -49,11 +49,58 @@
     .left-navigation {
         position: fixed;
         top: 0;
-        width: 3rem;
+        width: 3.5rem;
         height: 100%;
         background-color: $app-navigation-color;
         top: 0rem;
         z-index: 1;
+
+        .left-nav-inner {
+            margin-top: 6rem;
+            display: block;
+            width: 100%;
+            position: relative;
+
+            .nav-section {
+                margin: auto;
+                margin-top: 1rem;
+                padding-bottom: 1.5rem;
+                border-bottom: 1px solid $app-light-gray;
+                width: 2.5rem;
+                display: block;
+
+                &:last-of-type {
+                    border-bottom: none;
+                }
+
+                a {
+                    margin: auto;
+                    margin-top: 0.5rem;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 100%;
+                    padding: 0.5rem;
+
+                    &.active {
+                        background-color: $app-light-gray;
+                    }
+
+                    &.hero-link {
+                        background: $app-hero-gradient;
+                        cursor: pointer;
+                    }
+
+                    i {
+                        font-size: 1rem;
+                        display: block;
+                        width: fit-content;
+                        line-height: 1.4rem;
+                        margin: auto;
+                    }
+                }
+            }
+        }
     }
 
     a {

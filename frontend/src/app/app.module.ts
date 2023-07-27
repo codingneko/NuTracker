@@ -15,9 +15,15 @@ import { PasswordModule } from 'primeng/password';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
-import { MessageService } from "primeng/api";
+import { MessageService } from 'primeng/api';
 import { UserSettingsComponent } from './views/user-settings/user-settings.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { TooltipModule } from 'primeng/tooltip';
+import { NotFoundComponent } from './views/not-found/not-found.component';
+import { DialogModule } from 'primeng/dialog';
+import { NewNutComponent } from './components/new-nut/new-nut.component';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
     declarations: [
@@ -27,6 +33,8 @@ import { FileUploadModule } from 'primeng/fileupload';
         LoginComponent,
         RegisterComponent,
         UserSettingsComponent,
+        NotFoundComponent,
+        NewNutComponent,
     ],
     imports: [
         BrowserModule,
@@ -34,6 +42,7 @@ import { FileUploadModule } from 'primeng/fileupload';
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
+        InputTextareaModule,
         InputTextModule,
         CheckboxModule,
         ButtonModule,
@@ -41,7 +50,10 @@ import { FileUploadModule } from 'primeng/fileupload';
         ToastModule,
         MessagesModule,
         ReactiveFormsModule,
-        FileUploadModule
+        FileUploadModule,
+        TooltipModule,
+        DialogModule,
+        CalendarModule,
     ],
     providers: [MessageService],
     bootstrap: [AppComponent],

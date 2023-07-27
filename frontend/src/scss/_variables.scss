@@ -1,10 +1,16 @@
 $app-navigation-color: #222;
 $app-background-color: #111;
 $app-main-container-color: #333;
+$app-light-gray: #555;
 $app-text-color: #eeeeee;
 $app-primary-color: rgb(173, 165, 229);
 $app-secondary-color: rgb(229, 149, 154);
-$passwordMeterBg: #555 !default;
+$app-hero-gradient: linear-gradient(
+    60deg,
+    rgba(65, 158, 159, 1) 15%,
+    rgba(161, 81, 128, 1) 100%
+);
+$passwordMeterBg: $app-light-gray !default;
 $passwordWeakBg: #ea5455 !default;
 $passwordMediumBg: #ff9f42 !default;
 $passwordStrongBg: #29c76f !default;

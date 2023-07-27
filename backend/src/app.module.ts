@@ -5,6 +5,8 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { constants } from './constants';
+import { Nut } from './typeorm/nut.entity';
+import { NutModule } from './nut/nut.module';
 
 @Module({
     imports: [
@@ -16,7 +18,7 @@ import { constants } from './constants';
             password: constants.db_password,
             database: constants.db_name,
             synchronize: true,
-            entities: [User],
+            entities: [User, Nut],
         }),
         JwtModule.register({
             global: true,
@@ -25,6 +27,7 @@ import { constants } from './constants';
         }),
         AuthModule,
         UserModule,
+        NutModule,
     ],
     controllers: [],
     providers: [],

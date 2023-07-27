@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Nut } from './nut.entity';
 
 @Entity()
 export class User {
@@ -8,12 +9,15 @@ export class User {
     @Column({ unique: true, nullable: false })
     username: string;
 
-    @Column({nullable: false})
+    @Column({ nullable: false })
     password: string;
 
-    @Column({nullable: true})
+    @Column({ nullable: true })
     email?: string;
 
-    @Column({nullable: true})
+    @Column({ nullable: true })
     avatar?: string;
+
+    @OneToMany(() => Nut, (nut) => nut.user)
+    nuts: Nut[];
 }

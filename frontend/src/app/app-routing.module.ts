@@ -5,12 +5,18 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { UserSettingsComponent } from './views/user-settings/user-settings.component';
 import { authGuard } from './auth/auth.guard';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'user-settings', component: UserSettingsComponent, canActivate: [authGuard]}
+    {
+        path: 'user-settings',
+        component: UserSettingsComponent,
+        canActivate: [authGuard],
+    },
+    { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

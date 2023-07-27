@@ -1,0 +1,17 @@
+<form [formGroup]="newNutForm">
+    <div class="field">
+        <p-calendar
+            appendTo="body"
+            formGroupName="date"
+            [showTime]="true"
+            [showSeconds]="true"
+            [showButtonBar]="true"
+        ></p-calendar>
+    </div>
+    <div class="field">
+        <textarea cols="80" rows="6" pInputTextarea></textarea>
+    </div>
+    <div class="flex flex-row-reverse">
+        <p-button label="Nut" icon="pi pi-check"></p-button>
+    </div>
+</form>

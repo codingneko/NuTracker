@@ -1,4 +1,5 @@
 <div class="navbar">
+    <!-- TOP NAVIGATION BAR -->
     <div class="top-navigation">
         <div class="top-nav-inner">
             <div class="left">
@@ -26,5 +27,61 @@
             </div>
         </div>
     </div>
-    <div class="left-navigation"></div>
+
+    <!-- LEFT NAVIGATION BAR -->
+    <div class="left-navigation">
+        <div class="left-nav-inner">
+            <div class="nav-section">
+                <a
+                    (click)="onShowNewNutDialog($event)"
+                    pTooltip="Create a new Nut"
+                    class="hero-link"
+                >
+                    <i class="pi pi-pencil"></i>
+                </a>
+            </div>
+            <div class="nav-section">
+                <a
+                    routerLink="/global-stats"
+                    pTooltip="Global stats"
+                    routerLinkActive="active"
+                >
+                    <i class="pi pi-globe"></i>
+                </a>
+
+                <a
+                    routerLink="/user-stats"
+                    pTooltip="User stats"
+                    routerLinkActive="active"
+                >
+                    <i class="pi pi-user"></i>
+                </a>
+
+                <a
+                    routerLink="/friend-stats"
+                    pTooltip="Friend stats"
+                    routerLinkActive="active"
+                >
+                    <i class="pi pi-users"></i>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <a
+                    routerLink="/find-users"
+                    pTooltip="Find users"
+                    routerLinkActive="active"
+                >
+                    <i class="pi pi-search"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <p-dialog
+        [(visible)]="newNutDialogShown"
+        header="New nut"
+        [maximizable]="true"
+    >
+        <app-new-nut (formSubmitted)="onCloseNewNutDialog()"></app-new-nut>
+    </p-dialog>
 </div>
