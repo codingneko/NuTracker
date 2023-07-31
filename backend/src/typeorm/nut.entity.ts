@@ -6,6 +6,7 @@ export class Nut {
     @PrimaryGeneratedColumn({ type: 'bigint' })
     id: number;
 
+    @Column({ nullable: false, type: 'bigint'})
     @ManyToOne(() => User, (user) => user.nuts)
     user: User;
 

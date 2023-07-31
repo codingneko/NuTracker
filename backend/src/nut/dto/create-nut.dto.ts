@@ -1,10 +1,4 @@
-import {
-    IsEmail,
-    IsNotEmpty,
-    IsUrl,
-    ValidateIf,
-    MinLength,
-} from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 export class CreateNutDTO {
     @IsNotEmpty()
@@ -14,4 +8,6 @@ export class CreateNutDTO {
     date: Date;
 
     description: string;
+
+    score: number;
 }
