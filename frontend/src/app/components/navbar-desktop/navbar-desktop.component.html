@@ -31,7 +31,7 @@
     <!-- LEFT NAVIGATION BAR -->
     <div class="left-navigation">
         <div class="left-nav-inner">
-            <div class="nav-section">
+            <div class="nav-section" *ngIf="loggedIn">
                 <a
                     (click)="onShowNewNutDialog($event)"
                     pTooltip="Create a new Nut"
@@ -53,6 +53,7 @@
                     routerLink="/user-stats"
                     pTooltip="User stats"
                     routerLinkActive="active"
+                    *ngIf="loggedIn"
                 >
                     <i class="pi pi-user"></i>
                 </a>
@@ -61,6 +62,7 @@
                     routerLink="/friend-stats"
                     pTooltip="Friend stats"
                     routerLinkActive="active"
+                    *ngIf="loggedIn"
                 >
                     <i class="pi pi-users"></i>
                 </a>

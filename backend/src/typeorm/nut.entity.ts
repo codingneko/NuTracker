@@ -6,14 +6,13 @@ export class Nut {
     @PrimaryGeneratedColumn({ type: 'bigint' })
     id: number;
 
-    @Column({ nullable: false, type: 'bigint'})
-    @ManyToOne(() => User, (user) => user.nuts)
+    @ManyToOne(type => User, (user) => user.nuts)
     user: User;
 
     @Column({ nullable: true })
     date: Date;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, length: 3000 })
     description: string;
 
     @Column({ nullable: true })

@@ -1,15 +1,19 @@
 <form [formGroup]="newNutForm">
     <div class="field">
+        <label for="nut-date-field" class="w-full font-semibold">Nut date</label>
         <p-calendar
             appendTo="body"
             formGroupName="date"
+            id="nut-date-field"
             [showTime]="true"
             [showSeconds]="true"
             [showButtonBar]="true"
+            class="w-full"
         ></p-calendar>
     </div>
     <div class="field">
-        <textarea cols="80" rows="6" pInputTextarea></textarea>
+        <label for="nut-description" class="w-full font-semibold">Nut description</label>
+        <textarea id="nut-description" cols="80" rows="6" class="w-full" pInputTextarea></textarea>
     </div>
     <div class="flex flex-row-reverse">
         <p-button label="Nut" icon="pi pi-check"></p-button>

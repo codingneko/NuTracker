@@ -23,15 +23,13 @@ export class RegisterComponent {
     onRegister() {
         this.authService.register(this.registerRequest).subscribe({
             next: response => {
-                if (response.id) {
-                    this.router.navigateByUrl('login');
-                    this.messageService.add({
-                        key: 'br',
-                        severity: 'success',
-                        summary: 'Thanks for registering!',
-                        detail: 'Please log in with your new username and password'
-                    });
-                }
+                this.router.navigateByUrl('login');
+                this.messageService.add({
+                    key: 'br',
+                    severity: 'success',
+                    summary: 'Thanks for registering!',
+                    detail: 'Please log in with your new username and password'
+                });
             },
             error: response => {
                 if (response.status == 400 && Array.isArray(response.error.message)) {

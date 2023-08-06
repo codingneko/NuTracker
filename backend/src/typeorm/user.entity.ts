@@ -18,6 +18,6 @@ export class User {
     @Column({ nullable: true })
     avatar?: string;
 
-    @OneToMany(() => Nut, (nut) => nut.user)
+    @OneToMany(type => Nut, (nut) => nut.user)
     nuts: Nut[];
 }

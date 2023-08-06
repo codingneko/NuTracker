@@ -11,16 +11,20 @@ import {
     ParseFilePipe,
     FileTypeValidator,
     MaxFileSizeValidator,
+    ParamData,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from 'src/auth/service/auth/auth.guard';
+import { NutService } from 'src/nut/service/nut/nut.service';
 import { CreateUserDTO } from 'src/user/dto/create-user.dto';
 import { DeleteUserDTO } from 'src/user/dto/delete-user.dto';
 import { UserService } from 'src/user/service/user/user.service';
 
 @Controller('user')
 export class UserController {
-    constructor(private userService: UserService) {}
+    constructor(
+        private userService: UserService,
+        private nutService: NutService) {}
 
     @Get()
     getUsers() {
@@ -30,6 +34,11 @@ export class UserController {
     @Get()
     getUser(@Param() userId: number) {
         this.userService.getUser(userId);
+    }
+
+    @Get(':id/nuts')
+    getUserNuts(@Param() params: any) {
+        return this.nutService.getNut(params.id);
     }
 
     @Post()
