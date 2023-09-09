@@ -8,6 +8,7 @@ import User from '../models/entity/user.interface';
 import UploadAvatarRequest from '../models/request/UploadAvatarRequest.interface';
 import { CookieService } from 'ngx-cookie-service';
 import jwt_decode, { JwtPayload } from 'jwt-decode';
+import LeaderboardUser from '../models/entity/leaderboard-user.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -52,5 +53,11 @@ export class UserService {
         return this.httpClient.post(Constants.base_user_url + '/uploadAvatar', {
             body: body,
         });
+    }
+
+    getLeaderboard(): Observable<LeaderboardUser[]> {
+        return this.httpClient.get<LeaderboardUser[]>(
+            Constants.base_user_url + '/leaderboard'
+        );
     }
 }

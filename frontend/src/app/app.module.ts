@@ -24,6 +24,10 @@ import { DialogModule } from 'primeng/dialog';
 import { NewNutComponent } from './components/new-nut/new-nut.component';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { HomeComponent } from './views/home/home.component';
+import { Table, TableModule } from 'primeng/table';
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +39,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         UserSettingsComponent,
         NotFoundComponent,
         NewNutComponent,
+        HomeComponent,
+        LeaderboardComponent,
+        AvatarComponent,
     ],
     imports: [
         BrowserModule,
@@ -54,6 +61,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         TooltipModule,
         DialogModule,
         CalendarModule,
+        TableModule,
     ],
     providers: [MessageService],
     bootstrap: [AppComponent],

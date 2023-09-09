@@ -4,10 +4,12 @@ import {
     IsUrl,
     ValidateIf,
     MinLength,
+    IsNotIn,
 } from 'class-validator';
 
 export class CreateUserDTO {
     @IsNotEmpty()
+    @IsNotIn(['leaderboard'])
     username: string;
 
     @IsNotEmpty()

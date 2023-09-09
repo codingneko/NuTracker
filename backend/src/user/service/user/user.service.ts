@@ -14,6 +14,22 @@ export class UserService {
         private jwtService: JwtService,
     ) {}
 
+    getUsersByNutCount(): Promise<User[]> {
+        return this.userRepository.query(`
+            SELECT 
+                user.id, 
+                username, 
+                avatar, 
+                count(nut.id) AS count, 
+                AVG(nut.score) AS score 
+            FROM user 
+                LEFT JOIN nut 
+                ON nut.userId = user.id 
+            GROUP BY user.id 
+            ORDER BY count 
+            LIMIT 20;`);
+    }
+
     getUsers(): Promise<User[]> {
         return this.userRepository.find();
     }

@@ -32,6 +32,11 @@ export class UserController {
         return this.userService.getUsers();
     }
 
+    @Get('leaderboard')
+    getUserLeaderboard() {
+        return this.userService.getUsersByNutCount();
+    }
+
     @Get(':id')
     getUser(@Param() params: any) {
         return this.userService.getUser(params.id);
