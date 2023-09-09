@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
     selector: 'app-navbar-desktop',
@@ -11,16 +12,24 @@ export class NavbarDesktopComponent implements OnInit {
     loggedIn: boolean = false;
     newNutDialogShown: boolean = false;
 
-    constructor(private authService: AuthService) {}
+    constructor(
+        private authService: AuthService,
+        private cookieService: CookieService,
+        private userService: UserService
+    ) {}
 
     ngOnInit(): void {
-        this.authService.getSession().subscribe({
-            next: (sessionId) => {
-                console.log(sessionId);
-                // This is garbage. It's times like this I wish I had Java.String.isEmpty()
-                this.loggedIn = !!sessionId?.length;
-            },
-        });
+        this.loggedIn = this.userService.getUserId() != -1;
+        if (this.loggedIn) {
+            this.userService.getUser().subscribe({
+                next: (user) => {
+                    console.log(user.id);
+                    if (!user.id) {
+                        this.authService.logOut();
+                    }
+                },
+            });
+        }
     }
 
     logOut() {

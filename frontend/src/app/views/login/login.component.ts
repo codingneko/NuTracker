@@ -20,32 +20,36 @@ export class LoginComponent {
     };
 
     constructor(
-        private authService: AuthService, 
+        private authService: AuthService,
         private messageService: MessageService,
-        private router: Router) {}
+        private router: Router
+    ) {}
 
     onLogin() {
         this.authService.login(this.loginRequest).subscribe({
             next: (loginResponse) => {
                 let jwtInfo: any = jwt_decode(loginResponse.accessToken);
 
-                this.router.navigateByUrl('/');
-                this.authService.getSession();
+                window.location.assign('/');
 
                 this.messageService.add({
                     key: 'br',
                     severity: 'success',
                     summary: 'Logged in!',
                     sticky: true,
-                    detail: 'Welcome ' + jwtInfo.username
+                    detail: 'Welcome ' + jwtInfo.username,
                 });
             },
-            error: response => {
-                if (response.status == 400 && Array.isArray(response.error.message)) {
+            error: (response) => {
+                if (
+                    response.status == 400 &&
+                    Array.isArray(response.error.message)
+                ) {
                     let message: string = '';
 
                     response.error.message.forEach((element: string) => {
-                        message += element.charAt(0).toUpperCase() + element.slice(1);
+                        message +=
+                            element.charAt(0).toUpperCase() + element.slice(1);
                         message += '. ';
                     });
 
@@ -54,7 +58,7 @@ export class LoginComponent {
                         severity: 'error',
                         summary: 'Wrong input',
                         sticky: true,
-                        detail: message
+                        detail: message,
                     });
                 }
 
@@ -64,10 +68,10 @@ export class LoginComponent {
                         severity: 'error',
                         summary: 'Wrong credentials',
                         sticky: true,
-                        detail: 'Please check your username and password.'
+                        detail: 'Please check your username and password.',
                     });
                 }
-            }
+            },
         });
     }
 }

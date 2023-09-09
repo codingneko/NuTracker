@@ -18,10 +18,16 @@ export class UserService {
         return this.userRepository.find();
     }
 
-    getUser(userId: number): Promise<User> {
-        return this.userRepository.findOneBy({
+    async getUser(userId: number): Promise<User> {
+        let user = await this.userRepository.findOneBy({
             id: userId,
         });
+
+        if (user !== null) {
+            return user;
+        }
+
+        return new User();
     }
 
     async createUser(createUserDTO: CreateUserDTO): Promise<User> {

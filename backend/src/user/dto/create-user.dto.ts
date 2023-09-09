@@ -8,11 +8,9 @@ import {
 
 export class CreateUserDTO {
     @IsNotEmpty()
-    @MinLength(3)
     username: string;
 
     @IsNotEmpty()
-    @MinLength(8)
     password: string;
 
     @IsEmail()

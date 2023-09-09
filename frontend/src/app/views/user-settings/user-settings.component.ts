@@ -1,42 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FileUploadEvent, FileUploadHandlerEvent, FileUploadModule, UploadEvent } from 'primeng/fileupload';
+import {
+    FileUploadEvent,
+    FileUploadHandlerEvent,
+    FileUploadModule,
+    UploadEvent,
+} from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import jwtDecode from 'jwt-decode';
 import { Constants } from 'src/app/utils/Constants';
 import User from 'src/app/models/entity/user.interface';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-user-settings',
     templateUrl: './user-settings.component.html',
-    styleUrls: ['./user-settings.component.scss']
+    styleUrls: ['./user-settings.component.scss'],
 })
 export class UserSettingsComponent implements OnInit {
-    jwt: string = '';
     currentUser: User = new User();
-    avatarUploadEndpoint: string = Constants.base_user_url + '/' + this.currentUser.getUserId + '/avatar';
-
+    jwt: string = this.cookieService.get('JSESSIONID');
+    avatarUploadEndpoint = '';
 
     accountDeletionForm: FormGroup = this.formBuilder.group({
-        accountDeletionCheckbox: ['', Validators.required]
+        accountDeletionCheckbox: ['', Validators.required],
     });
 
     constructor(
-        private userService: UserService, 
-        private authService: AuthService, 
-        private formBuilder: FormBuilder, 
-        private messageService: MessageService){}
+        private userService: UserService,
+        private authService: AuthService,
+        private formBuilder: FormBuilder,
+        private messageService: MessageService,
+        private cookieService: CookieService
+    ) {}
 
     ngOnInit(): void {
-        this.authService.getSession().subscribe({
-            next: jwt => {
-                this.jwt = jwt;
-                this.userService.getUser(this.jwt).subscribe
-            }
-        })
+        this.userService.getUser().subscribe({
+            next: (data) => {
+                this.currentUser = data;
+                this.avatarUploadEndpoint =
+                    Constants.base_user_url +
+                    '/' +
+                    this.currentUser.id +
+                    '/avatar';
+            },
+            error: (error) => {
+                this.messageService.add({
+                    key: 'br',
+                    severity: 'error',
+                    summary: 'Something went wrong',
+                    detail: 'Something went wrong getting your user information from the server',
+                });
+            },
+        });
     }
 
     deleteAccount() {
@@ -46,36 +64,37 @@ export class UserSettingsComponent implements OnInit {
                 key: 'br',
                 severity: 'warn',
                 summary: 'This might be a sign',
-                detail: 'Please don\'t leave, but if you still do want to leave, you must check the checkmark above the button first.'
+                detail: "Please don't leave, but if you still do want to leave, you must check the checkmark above the button first.",
             });
             return;
         }
 
-        let jwtInfo: any = jwtDecode(this.jwt);
-
-        this.userService.deleteUser({
-            userId: jwtInfo.userId, 
-            jwt: this.jwt
-        }).subscribe({
-            next: response => {
-                if (response) {
+        this.userService
+            .deleteUser({
+                userId: this.currentUser.id,
+            })
+            .subscribe({
+                next: (response) => {
+                    if (response) {
+                        this.messageService.add({
+                            key: 'br',
+                            severity: 'success',
+                            summary: 'User deleted',
+                            detail: 'Sorry to see you go, hope you come back some day :<',
+                        });
+                        this.authService.logOut();
+                    }
+                },
+                error: (response) => {
                     this.messageService.add({
                         key: 'br',
-                        severity: 'success',
-                        summary: 'User deleted',
-                        detail: 'Sorry to see you go, hope you come back some day :<'
+                        severity: 'error',
+                        summary: 'Something went wrong. ',
+                        detail:
+                            'Your user was not deleted. Server said: ' +
+                            response.error.message,
                     });
-                    this.authService.logOut();
-                }
-            },
-            error: response => {
-                this.messageService.add({
-                    key: 'br',
-                    severity: 'error',
-                    summary: 'Something went wrong. ',
-                    detail: 'Your user was not deleted. Server said: ' + response.error.message
-                })
-            }
-        });
+                },
+            });
     }
 }

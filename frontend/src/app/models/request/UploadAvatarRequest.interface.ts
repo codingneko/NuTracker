@@ -1,5 +1,3 @@
-import BaseAuthenticatedRequest from "./BaseAuthenticatedRequest.interface";
-
-export default interface UploadAvatarRequest extends BaseAuthenticatedRequest {
+export default interface UploadAvatarRequest {
     file: File;
 }

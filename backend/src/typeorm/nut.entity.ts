@@ -6,7 +6,7 @@ export class Nut {
     @PrimaryGeneratedColumn({ type: 'bigint' })
     id: number;
 
-    @ManyToOne(type => User, (user) => user.nuts)
+    @ManyToOne((type) => User, (user) => user.nuts, { onDelete: 'CASCADE' })
     user: User;
 
     @Column({ nullable: true })

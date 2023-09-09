@@ -3,7 +3,7 @@ import { Nut } from './nut.entity';
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn({ type: 'bigint' })
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column({ unique: true, nullable: false })
@@ -18,6 +18,6 @@ export class User {
     @Column({ nullable: true })
     avatar?: string;
 
-    @OneToMany(type => Nut, (nut) => nut.user)
+    @OneToMany((type) => Nut, (nut) => nut.user)
     nuts: Nut[];
 }

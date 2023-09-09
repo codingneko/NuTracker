@@ -12,9 +12,10 @@ import { CookieService } from 'ngx-cookie-service';
     providedIn: 'root',
 })
 export class AuthService {
-    private sessionId: BehaviorSubject<string> = new BehaviorSubject<string>('');
-
-    constructor(private httpClient: HttpClient, private cookieService: CookieService) {}
+    constructor(
+        private httpClient: HttpClient,
+        private cookieService: CookieService
+    ) {}
 
     login(loginRequest: LoginRequest): Observable<LoginResponse> {
         return this.httpClient.post<LoginResponse>(
@@ -24,8 +25,8 @@ export class AuthService {
     }
 
     logOut() {
-        this.sessionId.next('');
         this.cookieService.delete('JSESSIONID');
+        window.location.assign('/login');
     }
 
     register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
@@ -33,13 +34,5 @@ export class AuthService {
             Constants.base_auth_url + '/register',
             registerRequest
         );
-    }
-
-    getSession(): Observable<string> {
-        if (!this.sessionId.getValue()) {
-            this.sessionId.next(this.cookieService.get('JSESSIONID'));
-        }
-
-        return this.sessionId.asObservable();
     }
 }

@@ -24,16 +24,17 @@ import { UserService } from 'src/user/service/user/user.service';
 export class UserController {
     constructor(
         private userService: UserService,
-        private nutService: NutService) {}
+        private nutService: NutService,
+    ) {}
 
     @Get()
     getUsers() {
         return this.userService.getUsers();
     }
 
-    @Get()
-    getUser(@Param() userId: number) {
-        this.userService.getUser(userId);
+    @Get(':id')
+    getUser(@Param() params: any) {
+        return this.userService.getUser(params.id);
     }
 
     @Get(':id/nuts')

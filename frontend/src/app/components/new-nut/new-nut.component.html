@@ -1,9 +1,11 @@
-<form [formGroup]="newNutForm">
+<form [formGroup]="nutForm" (submit)="postNut()">
     <div class="field">
-        <label for="nut-date-field" class="w-full font-semibold">Nut date</label>
+        <label for="nut-date-field" class="w-full font-semibold"
+            >Nut date</label
+        >
         <p-calendar
             appendTo="body"
-            formGroupName="date"
+            formControlName="date"
             id="nut-date-field"
             [showTime]="true"
             [showSeconds]="true"
@@ -12,10 +14,19 @@
         ></p-calendar>
     </div>
     <div class="field">
-        <label for="nut-description" class="w-full font-semibold">Nut description</label>
-        <textarea id="nut-description" cols="80" rows="6" class="w-full" pInputTextarea></textarea>
+        <label for="nut-description" class="w-full font-semibold"
+            >Nut description</label
+        >
+        <textarea
+            id="nut-description"
+            cols="80"
+            rows="6"
+            class="w-full"
+            formControlName="description"
+            pInputTextarea
+        ></textarea>
     </div>
     <div class="flex flex-row-reverse">
-        <p-button label="Nut" icon="pi pi-check"></p-button>
+        <p-button type="submit" label="Nut" icon="pi pi-check"></p-button>
     </div>
 </form>
