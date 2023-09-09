@@ -1,0 +1,33 @@
+<div class="user-header">
+    <div class="avatar-container">
+        <app-avatar [avatarUrl]="user.avatar"></app-avatar>
+    </div>
+</div>
+
+<div class="username-container">
+    {{ user.username }}
+</div>
+
+<p-table
+    *ngIf="user.nuts !== undefined && user.nuts.length > 0"
+    [value]="user.nuts"
+    [tableStyle]="{ 'min-width': '50rem' }"
+>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Date</th>
+            <th>Score</th>
+            <th>Description</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-nut>
+        <tr>
+            <td>
+                {{ nut.date.toLocaleDateString() }} at
+                {{ nut.date.toLocaleTimeString() }}
+            </td>
+            <td>{{ nut.score }}</td>
+            <td>{{ nut.description }}</td>
+        </tr>
+    </ng-template>
+</p-table>

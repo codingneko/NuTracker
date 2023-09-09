@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Constants } from '../utils/Constants';
 import { DeleteUserRequest } from '../models/request/DeleteUserRequest.interface';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import User from '../models/entity/user.interface';
 import UploadAvatarRequest from '../models/request/UploadAvatarRequest.interface';
 import { CookieService } from 'ngx-cookie-service';

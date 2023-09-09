@@ -28,6 +28,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { HomeComponent } from './views/home/home.component';
 import { Table, TableModule } from 'primeng/table';
 import { AvatarComponent } from './components/avatar/avatar.component';
+import { UserComponent } from './views/user/user.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
         HomeComponent,
         LeaderboardComponent,
         AvatarComponent,
+        UserComponent,
     ],
     imports: [
         BrowserModule,

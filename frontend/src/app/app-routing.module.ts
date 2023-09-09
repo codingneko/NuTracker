@@ -6,6 +6,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { UserSettingsComponent } from './views/user-settings/user-settings.component';
 import { authGuard } from './auth/auth.guard';
 import { NotFoundComponent } from './views/not-found/not-found.component';
+import { UserComponent } from './views/user/user.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
         component: UserSettingsComponent,
         canActivate: [authGuard],
     },
+    { path: 'user/:id', component: UserComponent },
     { path: '**', component: NotFoundComponent },
 ];
 

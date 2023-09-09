@@ -1,0 +1,33 @@
+@import "variables";
+
+.user-header {
+    position: relative;
+
+    .avatar-container {
+        width: fit-content;
+        margin: auto;
+        z-index: 1;
+        position: relative;
+        border-left: 2rem solid $app-main-container-color;
+        border-right: 2rem solid $app-main-container-color;
+    }
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 80%;
+        top: 50%;
+        left: 10%;
+        border-bottom: 1px solid #fff;
+        z-index: 0;
+    }
+}
+
+.username-container {
+    font-weight: 900;
+    font-size: 4rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 2rem;
+}
