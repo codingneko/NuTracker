@@ -16,7 +16,10 @@ export class LeaderboardComponent implements OnInit {
     ngOnInit(): void {
         this.userService.getLeaderboard().subscribe({
             next: (data) => {
-                this.leaderboard = data;
+                this.leaderboard = data.map(user => ({
+                    ...user,
+                    score: Number(user.score)
+                }));
             },
         });
     }

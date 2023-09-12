@@ -29,6 +29,7 @@ import { HomeComponent } from './views/home/home.component';
 import { Table, TableModule } from 'primeng/table';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { UserComponent } from './views/user/user.component';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { UserComponent } from './views/user/user.component';
         DialogModule,
         CalendarModule,
         TableModule,
+        InputNumberModule
     ],
     providers: [MessageService],
     bootstrap: [AppComponent],

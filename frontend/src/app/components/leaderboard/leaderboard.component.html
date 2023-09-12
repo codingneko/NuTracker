@@ -10,11 +10,11 @@
     <ng-template pTemplate="body" let-user>
         <tr [pSelectableRow]="user" (click)="goToUser(user.id)">
             <td>
-                <app-avatar [size]="20"></app-avatar>
+                <app-avatar [avatarUrl]="user.avatar" [size]="20"></app-avatar>
             </td>
             <td>{{ user.username }}</td>
             <td>{{ user.count }}</td>
-            <td>{{ user.score }}</td>
+            <td>{{ user.score.toFixed(2) }}</td>
         </tr>
     </ng-template>
 </p-table>

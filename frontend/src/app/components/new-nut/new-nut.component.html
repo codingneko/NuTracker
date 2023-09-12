@@ -1,32 +1,38 @@
 <form [formGroup]="nutForm" (submit)="postNut()">
-    <div class="field">
-        <label for="nut-date-field" class="w-full font-semibold"
-            >Nut date</label
-        >
-        <p-calendar
-            appendTo="body"
-            formControlName="date"
-            id="nut-date-field"
-            [showTime]="true"
-            [showSeconds]="true"
-            [showButtonBar]="true"
-            class="w-full"
-        ></p-calendar>
-    </div>
-    <div class="field">
-        <label for="nut-description" class="w-full font-semibold"
-            >Nut description</label
-        >
-        <textarea
-            id="nut-description"
-            cols="80"
-            rows="6"
-            class="w-full"
-            formControlName="description"
-            pInputTextarea
-        ></textarea>
-    </div>
-    <div class="flex flex-row-reverse">
-        <p-button type="submit" label="Nut" icon="pi pi-check"></p-button>
+    <div class="formgrid grid">
+        <div class="field md:col-6 col-12">
+            <label for="nut-date-field" class="font-semibold w-full"
+                >Nut date</label
+            >
+            <p-calendar
+                appendTo="body"
+                formControlName="date"
+                id="nut-date-field"
+                [showTime]="true"
+                [showSeconds]="true"
+                [showButtonBar]="true"
+                class="w-full"
+            ></p-calendar>
+        </div>
+        <div class="field md:col-6 col-12">
+            <label for="nut-score" class="font-semibold w-full">Nut Score</label>
+            <p-inputNumber formControlName="score" id="nut-score" class="w-full"></p-inputNumber>
+        </div>
+        <div class="field col-12">
+            <label for="nut-description" class="font-semibold w-full"
+                >Nut description</label
+            >
+            <textarea
+                id="nut-description"
+                cols="80"
+                rows="6"
+                class="w-full"
+                formControlName="description"
+                pInputTextarea
+            ></textarea>
+        </div>
+        <div class="field col-12 flex flex-row-reverse">
+            <p-button type="submit" label="Nut" icon="pi pi-check"></p-button>
+        </div>
     </div>
 </form>
